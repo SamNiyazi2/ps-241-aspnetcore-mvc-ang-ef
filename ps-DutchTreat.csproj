@@ -5,4 +5,8 @@
     <RootNamespace>ps_DutchTreat</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\index.html" />
+  </ItemGroup>
+
 </Project>

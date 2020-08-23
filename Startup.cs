@@ -40,10 +40,15 @@ namespace ps_DutchTreat
             //});
 
 
-            app.Run(async context =>
-          {
-              await context.Response.WriteAsync("Hellow World!!!");
-          });
+            //  app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync("Hellow World!!!");
+            //});
+
+            // 08/23/2020 11:52 am - SSN - [20200823-1152] - [001] - M02-08 - Serving your first file
+            // Order matters
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
 
         }
