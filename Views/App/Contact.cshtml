@@ -1,42 +1,47 @@
 ﻿@model ContactViewModel
 
-<form method="post">
-    <div asp-validation-summary="All"></div>
+    <div class="col-md-6 offset-md-3">
+        <div class="card card-body bg-light">
 
-    <label asp-for="Name">Your Name:</label>
-    <br />
-    <input asp-for="Name" />
-    <br />
-    <span asp-validation-for="Name"></span>
-    <br />
+            <form method="post">
+                <div asp-validation-summary="All"></div>
 
-    <label asp-for="Email">Email:</label>
-    <br />
-    <input asp-for="Email" type="email" />
-    <br />
-    <span asp-validation-for="Email"></span>
-    <br />
+                <label asp-for="Name">Your Name:</label>
+                <br />
+                <input asp-for="Name" />
+                <br />
+                <span asp-validation-for="Name"></span>
+                <br />
 
-    <label asp-for="Subject">Subject:</label>
-    <br />
-    <input asp-for="Subject" />
-    <br />
-    <span asp-validation-for="Subject"></span>
-    <br />
+                <label asp-for="Email">Email:</label>
+                <br />
+                <input asp-for="Email" type="email" />
+                <br />
+                <span asp-validation-for="Email"></span>
+                <br />
 
-    <label asp-for="Message">Message:</label>
-    <br />
-    <textarea asp-for="Message" rows="4"></textarea>
-    <br />
-    <span asp-validation-for="Message"></span>
-    <br />
+                <label asp-for="Subject">Subject:</label>
+                <br />
+                <input asp-for="Subject" />
+                <br />
+                <span asp-validation-for="Subject"></span>
+                <br />
 
-    <input type="submit" value="Send Message" />
-    <div class="@ViewBag.UserMessageClassname">@ViewBag.UserMessage</div>
+                <label asp-for="Message">Message:</label>
+                <br />
+                <textarea asp-for="Message" rows="4"></textarea>
+                <br />
+                <span asp-validation-for="Message"></span>
+                <br />
 
-</form>
+                <input type="submit" value="Send Message" />
+                <div class="@ViewBag.UserMessageClassname">@ViewBag.UserMessage</div>
 
-@section scripts {
-    <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
-}
+            </form>
+        </div>
+    </div>
+
+    @section scripts {
+        <script src="~/node_modules/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    }
