@@ -12,10 +12,16 @@ namespace ps_DutchTreat.Data
 {
     public class DutchContext : DbContext
     {
+        // 08/24/2020 02:47 pm - SSN - [20200824-1416] - [003] - M07-04 - Using configuration
+
+        public DutchContext(DbContextOptions<DutchContext> options) : base(options)
+        {
+
+        }
 
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Order> Orders { get; set; }
-         
+
     }
 }

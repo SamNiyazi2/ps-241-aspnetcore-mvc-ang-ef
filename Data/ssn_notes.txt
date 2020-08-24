@@ -1,0 +1,5 @@
+﻿
+// 08/24/2020 03:03 pm - SSN - [20200824-1416] - [004] - M07-04 - Using configuration
+
+According to instructions, we should be able to move the migrations folder.
+Moved from root directory.
