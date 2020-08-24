@@ -122,3 +122,8 @@ menu li {
     background-color: lightgoldenrodyellow;
 }
 */
+
+.cssLinkedErrorMessage {
+    cursor: pointer !important;
+    background-color: lightgoldenrodyellow !important;
+}
