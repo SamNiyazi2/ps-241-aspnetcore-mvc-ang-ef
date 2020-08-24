@@ -13,9 +13,7 @@ namespace ps_DutchTreat.Controllers
     {
         
         public IActionResult Index()
-        {
-
-            throw new InvalidOperationException("Testing-error-20200823-2136");
+        { 
             return View();
         }
     }

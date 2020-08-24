@@ -1,0 +1,24 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <title>Dutch Treat - @ViewBag.title</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <header>Welcome to Dutch Treat</header>
+
+    <section>
+        <h2>@ViewBag.title</h2>
+
+        @RenderBody()
+
+    </section>
+
+    <footer>@@c @DateTime.Now.Year Dutch Treat LLC</footer>
+
+    <script src="~/node_modules/jquery/dist/jqeury.min.js"></script>
+    <script src="~/js/index.js"></script>
+
+</body>
+</html>
