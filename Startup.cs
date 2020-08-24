@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ps_DutchTreat.Data;
 using ps_DutchTreat.Services;
 
 namespace ps_DutchTreat
@@ -12,6 +13,11 @@ namespace ps_DutchTreat
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // 08/24/2020 02:07 pm - SSN - [20200824-1400] - [001] - M07-03 - Using Entity Framework tooling
+            services.AddDbContext<DutchContext>();
+
+
             // 08/24/2020 07:59 am - SSN - [20200824-0751] - [002] - M05-12 - Adding a service
             services.AddTransient<IMailService,NullMailService>();
 
