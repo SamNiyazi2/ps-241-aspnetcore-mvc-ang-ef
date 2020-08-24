@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ps_DutchTreat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,16 @@ namespace ps_DutchTreat.Controllers
         [HttpGet("contact")]
         public IActionResult Contact()
         {
-            ViewBag.Title = "Contact Us";
-            throw new InvalidOperationException("Something went wrong!");
+            ViewBag.Title = "Contact Us"; 
             return View();
         }
+
+        [HttpPost("contact")]
+        public IActionResult Contact( ContactViewModel model)
+        {
+            return View();
+        }
+
 
 
         public IActionResult About()
@@ -35,6 +42,11 @@ namespace ps_DutchTreat.Controllers
             return View();
         }
 
+        public IActionResult ThrowError()
+        {
+
+            throw new InvalidOperationException("Something went wrong!");
+        }
 
 
     }

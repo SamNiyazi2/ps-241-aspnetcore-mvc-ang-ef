@@ -1,1 +1,23 @@
-﻿ 
+﻿@model ContactViewModel
+
+<form method="post">
+    <label asp-for="Name">Your Name:</label>
+    <br />
+    <input asp-for="Name" />
+    <br />
+    <label asp-for="Email">Email:</label>
+    <br />
+    <input asp-for="Email" type="email" />
+    <br />
+    <label asp-for="Subject">Subject:</label>
+    <br />
+    <input asp-for="Subject" />
+
+    <br />
+    <label asp-for="Message">Message:</label>
+    <br />
+    <textarea asp-for="Message" rows="4"></textarea>
+    <br />
+    <input type="submit" value="Send Message" />
+
+</form>
