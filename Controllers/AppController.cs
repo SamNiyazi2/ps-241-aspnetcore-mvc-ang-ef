@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ps_DutchTreat.Services;
 using ps_DutchTreat.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,14 @@ namespace ps_DutchTreat.Controllers
 {
     public class AppController : Controller
     {
+        private readonly IMailService mailService;
+
+        // 08/24/2020 08:07 am - SSN - [20200824-0751] - [003] - M05-12 - Adding a service
+        public AppController(IMailService mailService)
+        {
+            this.mailService = mailService;
+        }
+
 
         public IActionResult Index()
         {
@@ -31,15 +40,15 @@ namespace ps_DutchTreat.Controllers
         public IActionResult Contact( ContactViewModel model)
         { 
 
-
             if (ModelState.IsValid)
             {
+                this.mailService.SendMessage("sam@niyazi.com", model.Subject, $"From: {model.Name} ({model.Email}), Message: {model.Message}");
+                ModelState.Clear();
+                ViewBag.UserMessage = "Email sent";
+                ViewBag.UserMessageClassname = "text-info";
 
             }
-            else
-            {
-
-            }
+           
             return View();
         }
 

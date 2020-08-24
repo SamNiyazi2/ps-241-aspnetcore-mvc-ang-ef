@@ -43,12 +43,34 @@ ul.product-props {
     border-radius: 5px;
 }
 
+
+@media only screen and ( max-width:360px){
+    .product-info  {
+        width: 330px;
+    }
+
+}
     .product-info img {
-        margin: 3px;
+        margin: 4px;
         float: left;
         border: 1px solid black;
         max-width: 150px;
     }
+
+
+.login-div {
+    border: 1px solid grey;
+    padding: 8px 4px;
+    margin: 4px;
+    width: 450px;
+    border-radius: 5px;
+}
+
+@media only screen and ( max-width:360px) {
+    .login-div {
+        width: 330px;
+    }
+}
 
 #loginToggle {
     cursor: pointer;
@@ -56,9 +78,10 @@ ul.product-props {
 
 
 .popup-form {
-    padding: 5px;
+    padding: 4px;
     border: 2px inset black;
     display: inline-block;
+    border-radius: 5px;
 }
 
     .popup-form input {
@@ -71,7 +94,7 @@ ul.product-props {
         display: inline-block;
     }
 
-    .popup-form input [type=checkbox], .popup-form input[type=submit] {
+    .popup-form input[type=checkbox], .popup-form input[type=submit] {
         width: auto;
     }
 
