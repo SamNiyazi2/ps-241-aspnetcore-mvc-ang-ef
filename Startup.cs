@@ -12,6 +12,9 @@ namespace ps_DutchTreat
         public void ConfigureServices(IServiceCollection services)
         {
 
+            // 08/23/2020 11:51 pm - SSN - [20200823-2324] - [002] - M05-08 - Razor pages
+            services.AddRazorPages();
+
             // 08/23/2020 09:23 pm - SSN - [20200823-2113] - [002] - M05-04 - Enabling MVC 6
             services.AddControllersWithViews();
 
@@ -26,10 +29,14 @@ namespace ps_DutchTreat
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
+            }
+            else
+            {
+                // 08/23/2020 11:26 pm - SSN - [20200823-2324] - [001] - M05-08 - Razor pages
+                app.UseExceptionHandler("/error");
             }
 
-             
+
             //  app.Run(async context =>
             //{
             //    await context.Response.WriteAsync("Hellow World!!!");
@@ -57,6 +64,14 @@ namespace ps_DutchTreat
                     new { controller = "App", action = "Index" }
                     );
             });
+
+
+            // 08/23/2020 11:52 pm - SSN - [20200823-2324] - [003] - M05-08 - Razor pages
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
+
 
         }
     }

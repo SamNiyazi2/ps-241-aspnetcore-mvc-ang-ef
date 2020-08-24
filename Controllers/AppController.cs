@@ -23,7 +23,7 @@ namespace ps_DutchTreat.Controllers
         public IActionResult Contact()
         {
             ViewBag.Title = "Contact Us";
-
+            throw new InvalidOperationException("Something went wrong!");
             return View();
         }
 
