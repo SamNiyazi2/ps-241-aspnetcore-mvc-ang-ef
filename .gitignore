@@ -2,3 +2,5 @@ obj
 bin
 .vs
 ssn_*.cmd
+wwwroot/img/**
+node_modules/**
