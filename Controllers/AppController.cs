@@ -45,7 +45,7 @@ namespace ps_DutchTreat.Controllers
                 this.mailService.SendMessage("sam@niyazi.com", model.Subject, $"From: {model.Name} ({model.Email}), Message: {model.Message}");
                 ModelState.Clear();
                 ViewBag.UserMessage = "Email sent";
-                ViewBag.UserMessageClassname = "text-info";
+                ViewBag.UserMessageClassname = "text-success";
 
             }
            
