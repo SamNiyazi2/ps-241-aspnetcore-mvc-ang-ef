@@ -1,5 +1,6 @@
 ﻿body {
     font-family: 'Segoe UI', Tahoma, Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 input[type=submit] {
@@ -83,6 +84,17 @@ menu li {
     }
 
 
-    menu li:last-of-type::after{
+    menu li:last-of-type::after {
         content: ''
     }
+
+
+.field-validation-error {
+    color: darkred !important;
+    background-color:lightgoldenrodyellow;
+}
+
+.validation-summary-errors {
+    color: darkred !important;
+    background-color: lightgoldenrodyellow;
+}
