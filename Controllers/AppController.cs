@@ -9,12 +9,32 @@ using System.Threading.Tasks;
 
 namespace ps_DutchTreat.Controllers
 {
-    public class AppController: Controller
+    public class AppController : Controller
     {
-        
+
         public IActionResult Index()
-        { 
+        {
             return View();
         }
+
+
+        // 08/23/2020 10:10 pm - SSN - [20200823-2148] - [001] - M05-06 - Adding more views
+        public IActionResult Contact()
+        {
+            ViewBag.Title = "Contact Us";
+
+            return View();
+        }
+
+
+        public IActionResult About()
+        {
+            ViewBag.Title = "About Us";
+
+            return View();
+        }
+
+
+
     }
 }
