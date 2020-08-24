@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="container">
 
-        <header><h1>Welcome to Dutch Treat</h1></header>
+
+    <header class="container">
+        <h1>Welcome to Dutch Treat</h1>
         <menu>
             <ul>
                 <li><a asp-controller="App" asp-action="Index">Home</a></li>
@@ -19,18 +20,21 @@
                 <li><a asp-controller="App" asp-action="ThrowError">Error</a></li>
             </ul>
         </menu>
-        <section>
-            <h2>@ViewBag.title</h2>
+    </header>
+    <section class="container">
+        <h2>@ViewBag.title</h2>
 
-            @RenderBody()
+        @RenderBody()
 
-        </section>
+    </section>
 
-        <footer>@@ @DateTime.Now.Year Dutch Treat LLC</footer>
+    <footer class="container">
+        <div class="text-center">@@ @DateTime.Now.Year Dutch Treat LLC</div>
+    </footer>
 
-    </div>
 
     <script src="~/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
     <script src="~/js/index.js"></script>
 
