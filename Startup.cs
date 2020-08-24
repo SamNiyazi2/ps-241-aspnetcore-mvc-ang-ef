@@ -13,7 +13,7 @@ namespace ps_DutchTreat
         public void ConfigureServices(IServiceCollection services)
         {
             // 08/24/2020 07:59 am - SSN - [20200824-0751] - [002] - M05-12 - Adding a service
-            services.AddTransient<IMailService,NullMailServices>();
+            services.AddTransient<IMailService,NullMailService>();
 
 
             // 08/23/2020 11:51 pm - SSN - [20200823-2324] - [002] - M05-08 - Razor pages

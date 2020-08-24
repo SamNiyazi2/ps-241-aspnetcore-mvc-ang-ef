@@ -9,11 +9,11 @@ namespace ps_DutchTreat.Services
 {
     // 08/24/2020 07:51 am - SSN - [20200824-0751] - [001] - M05-12 - Adding a service
 
-    public class NullMailServices : IMailService
+    public class NullMailService : IMailService
     {
-        private readonly ILogger<NullMailServices> logger;
+        private readonly ILogger<NullMailService> logger;
 
-        public NullMailServices(ILogger<NullMailServices> logger)
+        public NullMailService(ILogger<NullMailService> logger)
         {
             this.logger = logger;
         }
