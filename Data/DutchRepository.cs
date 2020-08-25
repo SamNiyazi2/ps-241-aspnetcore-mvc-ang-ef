@@ -1,4 +1,5 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,18 @@ namespace ps_DutchTreat.Data
     public class DutchRepository : IDutchRepository
     {
         private readonly DutchContext ctx;
+        private readonly ILogger<DutchRepository> logger;
 
-        public DutchRepository(DutchContext _ctx)
+        public DutchRepository(DutchContext _ctx, ILogger<DutchRepository> _logger)
         {
             ctx = _ctx;
+            logger = _logger;
         }
 
         public IEnumerable<Product> GetAllProducts()
         {
+            logger.LogInformation("Call to GetAllProducts - 20200825-1122");
+
             return ctx.Products
                 .OrderBy(p => p.Title)
                 .ToList();
