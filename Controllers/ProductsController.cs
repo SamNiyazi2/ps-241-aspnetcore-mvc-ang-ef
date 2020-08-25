@@ -32,19 +32,20 @@ namespace ps_DutchTreat.Controllers
         [ProducesResponseType(400)]
         public ActionResult<IEnumerable<Product>> Get()
         {
+
             try
             {
                 return Ok(repository.GetAllProducts().Take(10));
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                var errorInfo = new { ErrorNo = "20200825-1156", ErrorMessage = "Failed to fulfil request." };
-                logger.LogError("Failed API request [20200825-1201]", errorInfo);
+                var errorInfo = APIErrorHandler.HandlerError<ProductsController>("20200825-1156", "APi failure.", "Failed API call.", ex, logger);
 
                 return BadRequest(errorInfo);
             }
 
         }
+
     }
 }

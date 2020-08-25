@@ -1,4 +1,5 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 // 08/25/2020 07:56 am - SSN - [20200825-0749] - [002] - M07-07 - The repository pattern
@@ -10,7 +11,9 @@ namespace ps_DutchTreat.Data
         IEnumerable<Product> GetAllProducts();
         IEnumerable<Product> GetProductsyCategory(string category);
 
-        bool SaveAll();
+        IEnumerable<Order> GetAllOrders();
+        Order GetOrderById(int id);
 
+        bool SaveAll();
     }
 }

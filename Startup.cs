@@ -55,7 +55,19 @@ namespace ps_DutchTreat
 
             // 08/25/2020 12:19 pm - SSN - [20200825-1139] - [002] - M08-01 - Create an API controller
             services.AddMvc()
-                            .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1)
+            // 08/25/2020 01:46 pm - SSN - [20200825-1315] - [002] - M08-02 - Returning data (API) 
+                .AddJsonOptions(options =>
+                 {
+                     options.JsonSerializerOptions.MaxDepth = 0;
+                 });
+
+            // 08/25/2020 01:46 pm - SSN - [20200825-1315] - [002] - M08-02 - Returning data (API) 
+            // Solution provided in video did not work.
+            // Found this by downloading Microsoft.AspNetCore.Mvc.NewtonsoftJson 
+            // services.AddMvc().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            // An alternative - Tested OK.
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
         }
 
