@@ -48,6 +48,10 @@ namespace ps_DutchTreat
             // 08/23/2020 09:23 pm - SSN - [20200823-2113] - [002] - M05-04 - Enabling MVC 6
             services.AddControllersWithViews();
 
+
+            // 08/25/2020 07:57 am - SSN - [20200825-0749] - [003] - M07-07 - The repository pattern
+            services.AddScoped<IDutchRepository, DutchRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

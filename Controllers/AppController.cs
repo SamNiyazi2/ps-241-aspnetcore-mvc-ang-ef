@@ -15,26 +15,21 @@ namespace ps_DutchTreat.Controllers
     public class AppController : Controller
     {
         private readonly IMailService mailService;
+        private readonly IDutchRepository dutchRepository;
 
-        public DutchContext context { get; }
 
         // 08/24/2020 08:07 am - SSN - [20200824-0751] - [003] - M05-12 - Adding a service
-        public AppController(IMailService mailService, DutchContext _context)
+        public AppController(IMailService mailService, IDutchRepository _dutchRepository)
         {
             this.mailService = mailService;
-            context = _context;
+            dutchRepository = _dutchRepository;
         }
 
 
         public IActionResult Index()
         {
-            // 08/25/2020 07:29 am - SSN - [20200825-0651] - [004] - M07-06 - Seeding the database 
-            // Duplicate of Shop ???
-            var results = context.Products
-               .OrderBy(p => p.Category)
-               .ToList();
 
-            return View(results);
+            return View();
         }
 
 
@@ -81,9 +76,7 @@ namespace ps_DutchTreat.Controllers
         // 08/24/2020 04:43 pm - SSN - [20200824-1643] - [001] - M07-05 - Using DbContext 
         public IActionResult Shop()
         {
-            var results = context.Products
-                .OrderBy(p => p.Category)
-                .ToList();
+            var results = dutchRepository.GetAllProducts();
 
             return View(results);
         }
