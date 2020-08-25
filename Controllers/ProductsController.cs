@@ -40,7 +40,7 @@ namespace ps_DutchTreat.Controllers
             }
             catch (Exception ex)
             {
-                var errorInfo = APIErrorHandler.HandlerError<ProductsController>("20200825-1156", "APi failure.", "Failed API call.", ex, logger);
+                var errorInfo = APIErrorHandler.LogError<ProductsController>("20200825-1156", "APi failure.", "Failed API call.", ex, logger);
 
                 return BadRequest(errorInfo);
             }

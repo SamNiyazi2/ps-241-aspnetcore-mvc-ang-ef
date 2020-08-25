@@ -36,7 +36,7 @@ namespace ps_DutchTreat.Controllers
             catch (Exception ex)
             {
 
-                var errorInfo = APIErrorHandler.HandlerError<OrdersController>("20200825-1336","APi failure.", "Failed API call.", ex, logger);
+                var errorInfo = APIErrorHandler.LogError<OrdersController>("20200825-1336", "APi failure.", "Failed API call.", ex, logger);
 
                 return BadRequest(errorInfo);
             }
@@ -51,27 +51,53 @@ namespace ps_DutchTreat.Controllers
             try
             {
                 Order order = repository.GetOrderById(id);
-                if (order!=null)
+                if (order != null)
                 {
                     return Ok(order);
                 }
                 else
                 {
-                    var errorInfo = APIErrorHandler.HandlerError<OrdersController>("20200825-1526", "Invalid order number.", "User is requesting an invaid order number", null, logger);
+                    var errorInfo = APIErrorHandler.LogInformation<OrdersController>("20200825-1526", "Invalid order number.", "User is requesting an invaid order number", logger);
 
-                    return BadRequest(errorInfo);
+                    return NotFound(errorInfo);
 
                 }
             }
             catch (Exception ex)
             {
 
-                var errorInfo = APIErrorHandler.HandlerError<OrdersController>("20200825-1336", "APi failure.", "Failed API call.", ex, logger);
+                var errorInfo = APIErrorHandler.LogError<OrdersController>("20200825-1336", "APi failure.", "Failed API call.", ex, logger);
 
                 return BadRequest(errorInfo);
             }
         }
 
+
+        [HttpPost]
+        // public IActionResult Post(Order order)
+        public IActionResult Post([FromBody] Order model)
+        {
+            try
+            {
+                repository.AddEntity(model);
+                
+                if (repository.SaveAll())
+                {
+                    return Created($"/api/orders/{model.Id}", model);
+                }
+                else
+                {
+                    var errorInfo = APIErrorHandler.LogInformation<OrdersController>("20200825-1742", "API Failure - failed to add order", "Failed to save new order.", logger);
+                    return BadRequest(errorInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorInfo = APIErrorHandler.LogError<OrdersController>("20200825-1733", "API Failure", "Failed API call.", ex, logger);
+                return BadRequest(errorInfo);
+            }
+
+        }
 
     }
 }
