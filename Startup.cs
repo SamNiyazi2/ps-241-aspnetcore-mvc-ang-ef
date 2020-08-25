@@ -52,6 +52,11 @@ namespace ps_DutchTreat
             // 08/25/2020 07:57 am - SSN - [20200825-0749] - [003] - M07-07 - The repository pattern
             services.AddScoped<IDutchRepository, DutchRepository>();
 
+
+            // 08/25/2020 12:19 pm - SSN - [20200825-1139] - [002] - M08-01 - Create an API controller
+            services.AddMvc()
+                            .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
