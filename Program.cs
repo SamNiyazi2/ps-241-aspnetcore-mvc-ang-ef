@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ps_DutchTreat.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ps_DutchTreat
 {
@@ -13,7 +15,29 @@ namespace ps_DutchTreat
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            runSeeding(host);
+
+            host.Run();
+
+        }
+
+        // 08/25/2020 07:23 am - SSN - [20200825-0651] - [002] - M07-06 - Seeding the database 
+        private static void runSeeding(IHost host)
+        {
+            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+
+            using (var scope = scopeFactory.CreateScope())
+            {
+
+                // using Microsoft.Extensions.DependencyInjection;
+                // var seeder = host.Services.GetService<DutchSeeder>();
+                var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
+                seeder.Seed();
+
+            }
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

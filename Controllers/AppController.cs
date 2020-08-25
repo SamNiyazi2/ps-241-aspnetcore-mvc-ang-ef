@@ -28,7 +28,13 @@ namespace ps_DutchTreat.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            // 08/25/2020 07:29 am - SSN - [20200825-0651] - [004] - M07-06 - Seeding the database 
+            // Duplicate of Shop ???
+            var results = context.Products
+               .OrderBy(p => p.Category)
+               .ToList();
+
+            return View(results);
         }
 
 

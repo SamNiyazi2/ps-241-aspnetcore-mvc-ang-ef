@@ -33,6 +33,10 @@ namespace ps_DutchTreat
            });
 
 
+            // 08/25/2020 07:23 am - SSN - [20200825-0651] - [003] - M07-06 - Seeding the database 
+            services.AddTransient<DutchSeeder>();
+
+
             // 08/24/2020 07:59 am - SSN - [20200824-0751] - [002] - M05-12 - Adding a service
             services.AddTransient<IMailService, NullMailService>();
 
