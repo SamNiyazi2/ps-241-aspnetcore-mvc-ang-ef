@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ps_DutchTreat.Data;
 using ps_DutchTreat.Services;
 using ps_DutchTreat.ViewModels;
 using System;
@@ -15,10 +16,13 @@ namespace ps_DutchTreat.Controllers
     {
         private readonly IMailService mailService;
 
+        public DutchContext context { get; }
+
         // 08/24/2020 08:07 am - SSN - [20200824-0751] - [003] - M05-12 - Adding a service
-        public AppController(IMailService mailService)
+        public AppController(IMailService mailService, DutchContext _context)
         {
             this.mailService = mailService;
+            context = _context;
         }
 
 
@@ -32,13 +36,13 @@ namespace ps_DutchTreat.Controllers
         [HttpGet("contact")]
         public IActionResult Contact()
         {
-            ViewBag.Title = "Contact Us"; 
+            ViewBag.Title = "Contact Us";
             return View();
         }
 
         [HttpPost("contact")]
-        public IActionResult Contact( ContactViewModel model)
-        { 
+        public IActionResult Contact(ContactViewModel model)
+        {
 
             if (ModelState.IsValid)
             {
@@ -48,7 +52,7 @@ namespace ps_DutchTreat.Controllers
                 ViewBag.UserMessageClassname = "text-success";
 
             }
-           
+
             return View();
         }
 
@@ -67,6 +71,16 @@ namespace ps_DutchTreat.Controllers
             throw new InvalidOperationException("Something went wrong!");
         }
 
+
+        // 08/24/2020 04:43 pm - SSN - [20200824-1643] - [001] - M07-05 - Using DbContext 
+        public IActionResult Shop()
+        {
+            var results = context.Products
+                .OrderBy(p => p.Category)
+                .ToList();
+
+            return View(results);
+        }
 
     }
 }
