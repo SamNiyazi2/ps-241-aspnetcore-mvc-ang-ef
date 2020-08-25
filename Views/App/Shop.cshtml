@@ -3,93 +3,41 @@
 @{
     ViewData["Title"] = "Shop";
 }
-
-<h1>Shop</h1>
  
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtDating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Artist)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtistBirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtistDeathDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArtistNationality)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtDating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtistBirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtistDeathDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArtistNationality)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+<div class="row">
+
+    @foreach (var p in Model)
+    { 
+
+    <div class="col-md-3">
+        <div class="border bg-light rounded p-1">
+
+            <img src="~/img/@(p.ArtId).jpg" class="img-fluid" title="@p.Artist -  @p.Title" alt="@p.Artist -  @p.Title"/>
+            <h3>
+                @Html.DisplayFor(modelItem => p.Category) - @p.Size
+            </h3>
+            <ul>
+
+                <li>
+                    @Html.DisplayFor(modelItem => p.Price)
+                </li>
+
+                <li class="product-props">
+                    @Html.DisplayFor(modelItem => p.Artist)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => p.Title)
+                </li>
+                <li>
+                    @Html.DisplayFor(modelItem => p.ArtDescription)
+                </li>
+            </ul>
+
+            <button id="buyButton" class="btn btn-success">Buy</button>
+        </div>
+    </div>
+    }
+
+</div>

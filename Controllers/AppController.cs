@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ps_DutchTreat.Data;
 using ps_DutchTreat.Services;
 using ps_DutchTreat.ViewModels;
@@ -76,7 +78,19 @@ namespace ps_DutchTreat.Controllers
         // 08/24/2020 04:43 pm - SSN - [20200824-1643] - [001] - M07-05 - Using DbContext 
         public IActionResult Shop()
         {
-            var results = dutchRepository.GetAllProducts();
+            var results_1 = dutchRepository.GetAllProducts().ToList() ;
+            List<Product> results = new List<Product>();
+
+            Random rand = new Random();
+            var counter = 0;
+            while ( counter < 10)
+            {
+                counter++;
+                results.Add(results_1[rand.Next(1, 800)]);
+            }
+            rand.Next(1, 800);
+
+
 
             return View(results);
         }

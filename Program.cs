@@ -17,26 +17,23 @@ namespace ps_DutchTreat
         {
             var host = CreateHostBuilder(args).Build();
 
-            runSeeding(host);
+            RunSeeding(host);
 
             host.Run();
 
         }
 
         // 08/25/2020 07:23 am - SSN - [20200825-0651] - [002] - M07-06 - Seeding the database 
-        private static void runSeeding(IHost host)
+        private static void RunSeeding(IHost host)
         {
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
 
-            using (var scope = scopeFactory.CreateScope())
-            {
+            using var scope = scopeFactory.CreateScope();
 
-                // using Microsoft.Extensions.DependencyInjection;
-                // var seeder = host.Services.GetService<DutchSeeder>();
-                var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
-                seeder.Seed();
-
-            }
+            // using Microsoft.Extensions.DependencyInjection;
+            // var seeder = host.Services.GetService<DutchSeeder>();
+            var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
+            seeder.Seed();
 
         }
 
@@ -47,13 +44,13 @@ namespace ps_DutchTreat
             // Adding ConfigureAppConfiguration to customize.
 
             Host.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(setupConfiguration)
+            .ConfigureAppConfiguration(SetupConfiguration)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static void setupConfiguration(HostBuilderContext ctx, IConfigurationBuilder builder)
+        private static void SetupConfiguration(HostBuilderContext ctx, IConfigurationBuilder builder)
         {
             builder.Sources.Clear();
             // Order matters.  Last entry wins.
