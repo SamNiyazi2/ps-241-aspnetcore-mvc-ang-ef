@@ -1,13 +1,13 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ps_DutchTreat.Data;
 using ps_DutchTreat.Services;
-
+using System.Reflection;
 
 namespace ps_DutchTreat
 {
@@ -37,6 +37,10 @@ namespace ps_DutchTreat
 
             // 08/25/2020 07:23 am - SSN - [20200825-0651] - [003] - M07-06 - Seeding the database 
             services.AddTransient<DutchSeeder>();
+
+
+            // 08/26/2020 09:09 am - SSN - [20200826-0856] - [001] - M08-06 - Using AutoMapper 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
             // 08/24/2020 07:59 am - SSN - [20200824-0751] - [002] - M05-12 - Adding a service
@@ -76,14 +80,6 @@ namespace ps_DutchTreat
             });
 
         }
-
-
-
-
-
-
-
-
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
