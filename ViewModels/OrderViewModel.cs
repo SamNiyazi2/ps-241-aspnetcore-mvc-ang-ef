@@ -18,5 +18,8 @@ namespace ps_DutchTreat.ViewModels
         public string OrderNumber { get; set; }
 
 
+        // 08/26/2020 12:29 pm - SSN - [20200826-1226] - [001] - M08-07 -Creating association controller
+
+        public ICollection<OrderItemViewModel> Items { get; set; }
     }
 }
