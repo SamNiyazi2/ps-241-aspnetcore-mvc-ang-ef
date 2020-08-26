@@ -25,9 +25,10 @@ namespace ps_DutchTreat.Controllers
         public static APIErrorMessage LogError<T>(string errorNo, string errorMessageToUser, string errorMessageToSystemAdmin, Exception ex, ILogger<T> logger)
         {
             var errorObj = new APIErrorMessage { ErrorNo = errorNo, ErrorMessage = errorMessageToUser };
+            logger.LogError("--AAA--".PadLeft(80, '*'));
+            logger.LogError(DateTime.Now.ToString("=== yyyy-MM-dd hh:mm:ss t"));
             logger.LogError(errorNo, errorMessageToSystemAdmin);
             logger.LogError(errorMessageToSystemAdmin);
-            logger.LogError("-".PadLeft(80, '*'));
             logger.LogError(Newtonsoft.Json.JsonConvert.SerializeObject(ex, Newtonsoft.Json.Formatting.Indented));
             logger.LogError("-".PadLeft(80, '='));
             return errorObj;
@@ -48,8 +49,11 @@ namespace ps_DutchTreat.Controllers
         {
 
             var errorObj = new APIErrorMessage { ErrorNo = errorNo, ErrorMessage = errorMessageToUser };
+            logger.LogInformation("--BBB--".PadLeft(80, '*'));
+            logger.LogInformation(DateTime.Now.ToString("=== yyyy-MM-dd hh:mm:ss t"));
             logger.LogInformation(errorNo, errorMessageToSystemAdmin);
             logger.LogInformation(errorMessageToSystemAdmin);
+            logger.LogInformation("-".PadLeft(80, '='));
 
 
             if (modelState != null)

@@ -95,9 +95,11 @@ namespace ps_DutchTreat
             else
             {
                 // 08/23/2020 11:26 pm - SSN - [20200823-2324] - [001] - M05-08 - Razor pages
-                //  app.UseExceptionHandler("/error");
+                // app.UseExceptionHandler("/error");
 
-                Startup_Sub.UseExceptionHandler_custom(app);
+                // 08/26/2020 04:32 pm - SSSN
+                //Startup_Sub.UseExceptionHandler_custom(app);
+                app.UseExceptionHandler("/error2");
 
             }
 

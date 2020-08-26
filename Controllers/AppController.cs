@@ -1,4 +1,5 @@
 ﻿using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using ps_DutchTreat.Data;
@@ -76,14 +77,16 @@ namespace ps_DutchTreat.Controllers
 
 
         // 08/24/2020 04:43 pm - SSN - [20200824-1643] - [001] - M07-05 - Using DbContext 
+        // 08/26/2020 04:18 pm - SSN - [20200826-1618] - [001] - M09-02 - Authorize actions
+        [Authorize]
         public IActionResult Shop()
         {
-            var results_1 = dutchRepository.GetAllProducts().ToList() ;
+            var results_1 = dutchRepository.GetAllProducts().ToList();
             List<Product> results = new List<Product>();
 
             Random rand = new Random();
             var counter = 0;
-            while ( counter < 10)
+            while (counter < 10)
             {
                 counter++;
                 results.Add(results_1[rand.Next(1, 800)]);
@@ -91,9 +94,11 @@ namespace ps_DutchTreat.Controllers
             rand.Next(1, 800);
 
 
-
             return View(results);
         }
 
+
+
     }
+
 }
