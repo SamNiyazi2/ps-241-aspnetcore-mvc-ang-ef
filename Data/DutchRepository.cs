@@ -22,13 +22,21 @@ namespace ps_DutchTreat.Data
             logger = _logger;
         }
 
-        public IEnumerable<Order> GetAllOrders()
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
-            var results = ctx.Orders
-                .Include(o => o.Items)
-                .ThenInclude(o => o.Product);
+            var results = default(IEnumerable<Order>);
+            if (includeItems)
+            {
+                results = ctx.Orders
+                  .Include(o => o.Items)
+                  .ThenInclude(o => o.Product);
+            }
+            else
+            {
+                results = ctx.Orders;
+            }
 
-        //    results.Load(); // To see if we can trigger an error when table is missing.
+            //    results.Load(); // To see if we can trigger an error when table is missing.
 
             return results;
 
