@@ -28,7 +28,7 @@ namespace ps_DutchTreat.Data
                 .Include(o => o.Items)
                 .ThenInclude(o => o.Product);
 
-            results.Load(); // To see if we can trigger an error when table is missing.
+        //    results.Load(); // To see if we can trigger an error when table is missing.
 
             return results;
 

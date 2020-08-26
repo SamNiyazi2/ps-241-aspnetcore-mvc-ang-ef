@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ps_DutchTreat.Data;
+using ps_DutchTreat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -75,19 +76,44 @@ namespace ps_DutchTreat.Controllers
 
         [HttpPost]
         // public IActionResult Post(Order order)
-        public IActionResult Post([FromBody] Order model)
+        public IActionResult Post([FromBody] OrderViewModel model)
         {
             try
             {
-                repository.AddEntity(model);
-                
-                if (repository.SaveAll())
+                if (ModelState.IsValid)
                 {
-                    return Created($"/api/orders/{model.Id}", model);
+
+                    var newOrder = new Order
+                    {
+                        Id = model.OrderId,
+                        OrderDate = model.OrderDate,
+                        OrderNumber = model.OrderNumber
+                    };
+
+                    if (newOrder.OrderDate == DateTime.MinValue)
+                    {
+                        newOrder.OrderDate = DateTime.Now;
+                        model.OrderDate = newOrder.OrderDate;
+                    }
+
+                    repository.AddEntity(newOrder);
+
+                    if (repository.SaveAll())
+                    {
+                        model.OrderId = newOrder.Id;
+
+                        return Created($"/api/orders/{model.OrderId}", model);
+                    }
+                    else
+                    {
+                        var errorInfo = APIErrorHandler.LogInformation<OrdersController>("20200825-1742", "API Failure - failed to add order", "Failed to save new order.", logger);
+                        return BadRequest(errorInfo);
+                    }
+
                 }
                 else
                 {
-                    var errorInfo = APIErrorHandler.LogInformation<OrdersController>("20200825-1742", "API Failure - failed to add order", "Failed to save new order.", logger);
+                    var errorInfo = APIErrorHandler.LogInformation<OrdersController>("20200826-0722", "API validation error", "API Validation error.", logger, ModelState);
                     return BadRequest(errorInfo);
                 }
             }

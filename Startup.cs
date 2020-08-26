@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ps_DutchTreat.Data;
 using ps_DutchTreat.Services;
+
 
 namespace ps_DutchTreat
 {
@@ -67,9 +69,22 @@ namespace ps_DutchTreat
             // Found this by downloading Microsoft.AspNetCore.Mvc.NewtonsoftJson 
             // services.AddMvc().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // An alternative - Tested OK.
-            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddControllers().AddNewtonsoftJson(x =>
+            {
+                x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                x.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
 
         }
+
+
+
+
+
+
+
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -84,8 +99,14 @@ namespace ps_DutchTreat
             else
             {
                 // 08/23/2020 11:26 pm - SSN - [20200823-2324] - [001] - M05-08 - Razor pages
-                app.UseExceptionHandler("/error");
+                //  app.UseExceptionHandler("/error");
+
+                Startup_Sub.UseExceptionHandler_custom(app);
+
             }
+
+            Startup_Sub.TestMiddleware_101(app);
+
 
 
             //  app.Run(async context =>
@@ -108,21 +129,15 @@ namespace ps_DutchTreat
 
             app.UseRouting(); // [20200823-2113] - [001] 
 
-            app.UseEndpoints(cfg =>   // [20200823-2113] - [001]
+            app.UseEndpoints(endpoints =>   // [20200823-2113] - [001]
             {
-                cfg.MapControllerRoute("Fallback",
+                // 08/23/2020 11:52 pm - SSN - [20200823-2324] - [003] - M05-08 - Razor pages
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute("Fallback",
                     "{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" }
                     );
             });
-
-
-            // 08/23/2020 11:52 pm - SSN - [20200823-2324] - [003] - M05-08 - Razor pages
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
-
 
         }
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,7 @@ namespace ps_DutchTreat.Controllers
 {
     public class APIErrorHandler
     {
-        public class APIErrorMessage
-        {
-            public string ErrorNo { get; set; }
-            public string ErrorMessage { get; set; }
-        }
+
         /// <summary>
         /// Logs an error message.
         /// </summary>
@@ -43,13 +41,64 @@ namespace ps_DutchTreat.Controllers
         /// <param name="errorMessageToUser">Message to pass to user</param>
         /// <param name="errorMessageToSystemAdmin">Message to pass to system admin</param>
         /// <param name="logger">Current logger instance</param>
+        /// <param name="modelState">ModelState</param>
+
         /// <returns></returns>
-        internal static object LogInformation<T>(string errorNo, string errorMessageToUser, string errorMessageToSystemAdmin, ILogger<T> logger)
+        internal static object LogInformation<T>(string errorNo, string errorMessageToUser, string errorMessageToSystemAdmin, ILogger<T> logger, ModelStateDictionary modelState = null)
         {
+
             var errorObj = new APIErrorMessage { ErrorNo = errorNo, ErrorMessage = errorMessageToUser };
             logger.LogInformation(errorNo, errorMessageToSystemAdmin);
             logger.LogInformation(errorMessageToSystemAdmin);
+
+
+            if (modelState != null)
+            {
+                Dictionary<string, List<string>> errorMessages = modelState.ModelStateToDic();
+                logger.LogInformation(Newtonsoft.Json.JsonConvert.SerializeObject(errorMessages, Newtonsoft.Json.Formatting.Indented));
+                errorObj.ErrorList = errorMessages;
+            }
+
             return errorObj;
+        }
+
+
+    }
+
+
+    public class APIErrorMessage
+    {
+        public string ErrorNo { get; set; }
+        public string ErrorMessage { get; set; }
+        public Dictionary<string, List<string>> ErrorList { get; set; }
+
+    }
+
+
+    public static class ModelStateDictionary_Extension
+    {
+        public static Dictionary<string, List<string>> ModelStateToDic(this ModelStateDictionary modelState)
+        {
+            Dictionary<string, List<string>> dic = new Dictionary<string, List<string>>();
+
+            foreach (KeyValuePair<string, ModelStateEntry> error in modelState)
+            {
+                foreach (ModelError me in error.Value.Errors)
+                {
+                    dic.TryGetValue(error.Key, out List<string> currentyEntry);
+
+                    if (currentyEntry == null)
+                    {
+                        dic.Add(error.Key, new List<string>() { me.ErrorMessage });
+                    }
+                    else
+                    {
+                        currentyEntry.Add(me.ErrorMessage);
+                    }
+                }
+            }
+
+            return dic;
         }
     }
 }
