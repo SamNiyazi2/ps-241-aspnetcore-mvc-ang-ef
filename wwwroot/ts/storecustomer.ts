@@ -46,6 +46,5 @@ class StoreCustomer {
 
 }
 
-
-let cust = new StoreCustomer();
+ 
 

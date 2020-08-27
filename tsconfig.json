@@ -1,0 +1,11 @@
+{
+
+	"// 1": " 08/27/2020 01:38 pm - SSN - [20200827-1337] - [001] - M10-03 - Compiling TypeScript",
+	"include": [ "wwwroot/ts/**/*.ts" ],
+
+	"compilerOptions": {
+		"target": "es5",
+		"sourceMap": true
+	}
+
+}
