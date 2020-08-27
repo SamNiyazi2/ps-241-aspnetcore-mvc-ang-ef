@@ -12,7 +12,9 @@ namespace ps_DutchTreat.Data
         IEnumerable<Product> GetProductsyCategory(string category);
 
         IEnumerable<Order> GetAllOrders(bool includeItems);
-        Order GetOrderById(int id);
+        IEnumerable<Order> GetAllOrdersByUser(string userName, bool includeItems);
+
+        Order GetOrderById(string userName, int id);
 
         bool SaveAll();
         void AddEntity(object model);

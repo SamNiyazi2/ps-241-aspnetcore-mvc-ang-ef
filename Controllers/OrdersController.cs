@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ps_DutchTreat.Data;
+using ps_DutchTreat.Data.Entities;
 using ps_DutchTreat.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,12 +25,14 @@ namespace ps_DutchTreat.Controllers
         private readonly IDutchRepository repository;
         private readonly ILogger<OrdersController> logger;
         private readonly IMapper mapper;
+        private readonly UserManager<CustomUser> userManager;
 
-        public OrdersController(IDutchRepository _repository, ILogger<OrdersController> _logger, IMapper _mapper)
+        public OrdersController(IDutchRepository _repository, ILogger<OrdersController> _logger, IMapper _mapper, UserManager<CustomUser> _userManager)
         {
             repository = _repository;
             logger = _logger;
             mapper = _mapper;
+            userManager = _userManager;
         }
 
         [HttpGet]
@@ -37,7 +41,11 @@ namespace ps_DutchTreat.Controllers
 
             try
             {
-                return Ok(mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(repository.GetAllOrders(includeItems)));
+                // 08/27/2020 10:40 am - SSN - [20200827-1038] - [001] - M09-08 - Use identity in read operations
+
+                string userName = User.Identity.Name;
+
+                return Ok(mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(repository.GetAllOrdersByUser(userName, includeItems)));
             }
             catch (Exception ex)
             {
@@ -56,7 +64,11 @@ namespace ps_DutchTreat.Controllers
 
             try
             {
-                Order order = repository.GetOrderById(id);
+                // 08/27/2020 11:03 am - SSN - [20200827-1038] - [005] - M09-08 - Use identity in read operations
+                
+                string userName = User.Identity.Name;
+
+                Order order = repository.GetOrderById(userName, id);
                 if (order != null)
                 {
                     return Ok(mapper.Map<Order, OrderViewModel>(order));
@@ -81,7 +93,7 @@ namespace ps_DutchTreat.Controllers
 
         [HttpPost]
         // public IActionResult Post(Order order)
-        public IActionResult Post([FromBody] OrderViewModel model)
+        public async Task<IActionResult> Post([FromBody] OrderViewModel model)
         {
             try
             {
@@ -95,6 +107,11 @@ namespace ps_DutchTreat.Controllers
                     {
                         newOrder.OrderDate = DateTime.Now;
                     }
+
+                    // 08/27/2020 11:07 am - SSN - [20200827-1038] - [007] - M09-08 - Use identity in read operations
+                    CustomUser currentUser = await userManager.FindByNameAsync(User.Identity.Name);
+
+                    newOrder.user = currentUser;
 
                     repository.AddEntity(newOrder);
 

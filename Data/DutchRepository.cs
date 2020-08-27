@@ -43,12 +43,37 @@ namespace ps_DutchTreat.Data
         }
 
 
-        public Order GetOrderById(int id)
+
+        // 08/27/2020 10:45 am - SSN - [20200827-1038] - [002] - M09-08 - Use identity in read operations
+
+        public IEnumerable<Order> GetAllOrdersByUser(string userName, bool includeItems)
+        {
+            var results = default(IEnumerable<Order>);
+            if (includeItems)
+            {
+                results = ctx.Orders
+                    .Where(o => o.user.UserName == userName)
+                    .Include(o => o.Items)
+                    .ThenInclude(o => o.Product);
+            }
+            else
+            {
+                results = ctx.Orders
+                            .Where(o => o.user.UserName == userName);
+            }
+
+            return results;
+        }
+
+
+        // 08/27/2020 11:02 am - SSN - [20200827-1038] - [004] - M09-08 - Use identity in read operations
+
+        public Order GetOrderById(string userName, int id)
         {
             return ctx.Orders
                 .Include(o => o.Items)
                 .ThenInclude(o => o.Product)
-                .Where(o => o.Id == id).FirstOrDefault();
+                .Where(o => o.Id == id && o.user.UserName == userName).FirstOrDefault();
         }
 
 
@@ -79,5 +104,6 @@ namespace ps_DutchTreat.Data
         {
             ctx.Add(model);
         }
+
     }
 }

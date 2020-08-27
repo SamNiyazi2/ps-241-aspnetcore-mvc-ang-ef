@@ -36,7 +36,10 @@ namespace ps_DutchTreat.Controllers
         [HttpGet]
         public IActionResult Get(int orderId)
         {
-            var order = repository.GetOrderById(orderId);
+            // 08/27/2020 11:01 am - SSN - [20200827-1038] - [003] - M09-08 - Use identity in read operations
+            string userName = User.Identity.Name;
+
+            var order = repository.GetOrderById(userName, orderId);
 
             if (order != null) return Ok(mapper.Map<IEnumerable<OrderItem>, IEnumerable<OrderItemViewModel>>(order.Items));
 
@@ -46,7 +49,10 @@ namespace ps_DutchTreat.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int orderId, int id)
         {
-            var order = repository.GetOrderById(orderId);
+            // 08/27/2020 11:04 am - SSN - [20200827-1038] - [006] - M09-08 - Use identity in read operations
+            string userName = User.Identity.Name;
+
+            var order = repository.GetOrderById(userName, orderId);
 
             if (order != null)
             {
