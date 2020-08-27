@@ -37,3 +37,10 @@ function setupValidationSummaryErrors_setup() {
     });
 
 }
+
+
+$(function () {
+
+ 
+    $('[defaultFocus]').focus();
+});
