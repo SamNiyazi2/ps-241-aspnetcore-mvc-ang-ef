@@ -52,7 +52,20 @@ namespace ps_DutchTreat
             app.Use(async (context, next) =>
             {
                 // Do work that doesn't write to the Response.
-                await next.Invoke();
+                // await next.Invoke();
+                await next();
+
+                // 08/27/2020 01:13 am - SSN - Added
+                if (context.Response.StatusCode == 404)
+                {
+
+                    //  throw new Exception("Invalid url ");
+
+                    context.Request.Path = "/error404";
+                    await next();
+
+                }
+
                 // Do logging or other work that doesn't write to the Response.
             });
 

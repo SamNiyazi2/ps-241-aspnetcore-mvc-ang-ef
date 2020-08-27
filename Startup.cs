@@ -1,11 +1,13 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ps_DutchTreat.Data;
+using ps_DutchTreat.Data.Entities;
 using ps_DutchTreat.Services;
 using System.Reflection;
 
@@ -28,11 +30,21 @@ namespace ps_DutchTreat
         {
 
 
+            // 08/27/2020 12:43 am - SSN - [20200827-0039] - [001] - M09-04 - Configuring identity
+            services.AddIdentity<CustomUser, IdentityRole>(cfg =>
+                {
+                    cfg.User.RequireUniqueEmail = true;
+
+                })
+                .AddEntityFrameworkStores<DutchContext>();
+
+
+
             // 08/24/2020 02:07 pm - SSN - [20200824-1400] - [001] - M07-03 - Using Entity Framework tooling
             services.AddDbContext<DutchContext>(cfg =>
-           {
-               cfg.UseSqlServer(this.config.GetConnectionString("DutchConnectionString"));
-           });
+                {
+                    cfg.UseSqlServer(this.config.GetConnectionString("DutchConnectionString"));
+                });
 
 
             // 08/25/2020 07:23 am - SSN - [20200825-0651] - [003] - M07-06 - Seeding the database 
@@ -125,7 +137,17 @@ namespace ps_DutchTreat
 
             app.UseNodeModules();
 
+
+
             app.UseRouting(); // [20200823-2113] - [001] 
+
+
+
+            // 08/27/2020 12:59 am - SSN - [20200827-0039] - [002] - M09-04 - Configuring identity
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>   // [20200823-2113] - [001]
             {

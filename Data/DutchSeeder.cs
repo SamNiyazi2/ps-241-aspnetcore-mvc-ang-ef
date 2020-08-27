@@ -30,7 +30,7 @@ namespace ps_DutchTreat.Data
             ctx = _ctx;
             Hosting = _hosting;
             userManager = _userManager;
-            logger = _logger;
+          
         }
 
         string selectedUserEmail = "john@doe.com";
