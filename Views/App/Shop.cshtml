@@ -3,41 +3,46 @@
 @{
     ViewData["Title"] = "Shop";
 }
- 
+
 
 
 <div class="row">
 
     @foreach (var p in Model)
-    { 
+    {
 
-    <div class="col-md-3">
-        <div class="border bg-light rounded p-1">
+        <div class="col-md-3">
+            <div class="border bg-light rounded p-1">
 
-            <img src="~/img/@(p.ArtId).jpg" class="img-fluid" title="@p.Artist -  @p.Title" alt="@p.Artist -  @p.Title"/>
-            <h3>
-                @Html.DisplayFor(modelItem => p.Category) - @p.Size
-            </h3>
-            <ul>
+                <img src="~/img/@(p.ArtId).jpg" class="img-fluid" title="@p.Artist -  @p.Title" alt="@p.Artist -  @p.Title" />
+                <h3>
+                    @Html.DisplayFor(modelItem => p.Category) - @p.Size
+                </h3>
+                <ul>
 
-                <li>
-                    @Html.DisplayFor(modelItem => p.Price)
-                </li>
+                    <li>
+                        @Html.DisplayFor(modelItem => p.Price)
+                    </li>
 
-                <li class="product-props">
-                    @Html.DisplayFor(modelItem => p.Artist)
-                </li>
-                <li>
-                    @Html.DisplayFor(modelItem => p.Title)
-                </li>
-                <li>
-                    @Html.DisplayFor(modelItem => p.ArtDescription)
-                </li>
-            </ul>
+                    <li class="product-props">
+                        @Html.DisplayFor(modelItem => p.Artist)
+                    </li>
+                    <li>
+                        @Html.DisplayFor(modelItem => p.Title)
+                    </li>
+                    <li>
+                        @Html.DisplayFor(modelItem => p.ArtDescription)
+                    </li>
+                </ul>
 
-            <button id="buyButton" class="btn btn-success">Buy</button>
+                <button id="buyButton" class="btn btn-success">Buy</button>
+            </div>
         </div>
-    </div>
     }
 
 </div>
+
+@section scripts {
+    <script src="~/ts/storecustomer.js"></script>
+    <script src="~/ts/main.js"></script>
+}
