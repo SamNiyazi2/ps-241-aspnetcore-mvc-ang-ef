@@ -9,5 +9,10 @@
       "Microsoft": "Warning",
       "Microsoft.Hosting.Lifetime": "Warning"
     }
+  },
+  "Tokens": {
+    "key": "Token_key_for_API_2020827-0904",
+    "Issuer": "localhost",
+    "audience": "authorized_ssn_only"
   }
 }

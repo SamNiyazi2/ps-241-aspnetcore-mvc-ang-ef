@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ps_DutchTreat.Data;
@@ -14,8 +15,10 @@ using System.Threading.Tasks;
 
 namespace ps_DutchTreat.Controllers
 {
+    // 08/27/2020 10:10 am - SSN - [20200827-0827] - [003] - M09-07 - Use identity in the API
 
     [Route("/api/orders/{orderid}/items")]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class OrderItemsController : Controller
     {
         private readonly IDutchRepository repository;

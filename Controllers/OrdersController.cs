@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DutchTreat.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ps_DutchTreat.Data;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 namespace ps_DutchTreat.Controllers
 {
     [Route("/api/[controller]")]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class OrdersController : Controller
     {
         private readonly IDutchRepository repository;

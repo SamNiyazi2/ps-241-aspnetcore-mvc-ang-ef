@@ -6,10 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using ps_DutchTreat.Data;
 using ps_DutchTreat.Data.Entities;
 using ps_DutchTreat.Services;
 using System.Reflection;
+using System.Text;
 
 namespace ps_DutchTreat
 {
@@ -37,6 +39,27 @@ namespace ps_DutchTreat
 
                 })
                 .AddEntityFrameworkStores<DutchContext>();
+
+
+            // 08/27/2020 08:34 am - SSN - [20200827-0827] - [001] - M09-07 - Use identity in the API
+            string validIssuer = config["Tokens:Issuer"];
+            string validAudience = config["Tokens:audience"];
+            string token_key = config["Tokens:key"];
+
+            services.AddAuthentication()
+                .AddCookie()
+                .AddJwtBearer(cfg =>
+                {
+
+                    cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidIssuer = validIssuer,
+                        ValidAudience = validAudience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token_key))
+                    };
+
+                });
+
 
 
 
