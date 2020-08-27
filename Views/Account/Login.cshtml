@@ -1,0 +1,55 @@
+﻿@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    // 08/27/2020 02:14 am - SSN - [20200827-0153] - [003] - M09-05 - Designing the login view
+
+*@
+@{
+    ViewBag.title = "Login";
+}
+
+@model LoginViewModel
+
+<div class="row">
+
+    <div class="col-md-4 offset-md-4">
+
+        <form>
+
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-control" />
+
+                <span asp-validation-for="Username" class="text-warning"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+
+                <span asp-validation-for="Password" class="text-warning"></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+
+
+@section scripts {
+    @await Html.PartialAsync("sharedValidationScripts")
+}

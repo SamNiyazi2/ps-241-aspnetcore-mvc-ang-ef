@@ -59,9 +59,9 @@ namespace ps_DutchTreat
                 if (context.Response.StatusCode == 404)
                 {
 
-                    //  throw new Exception("Invalid url ");
+                    throw new Exception("Invalid url ");
 
-                    context.Request.Path = "/error404";
+                    //context.Request.Path = "/error404";
                     await next();
 
                 }
