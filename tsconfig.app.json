@@ -10,6 +10,7 @@
     "ClientApp/polyfills.ts"
   ],
   "include": [
-    "ClientApp/**/*.d.ts"
+    "ClientApp/**/*.d.ts",
+    "wwwroot/ts"
   ]
 }
