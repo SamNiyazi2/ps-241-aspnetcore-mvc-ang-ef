@@ -5,3 +5,4 @@ ssn_*.cmd
 wwwroot/img/**
 node_modules/**
 /Data/art.json
+/dist/dutch-app
