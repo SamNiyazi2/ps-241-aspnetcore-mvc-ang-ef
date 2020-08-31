@@ -60,7 +60,7 @@ namespace ps_DutchTreat.Controllers
                         string returnUrl = Request.Query["ReturnUrl"].FirstOrDefault();
                         if (!string.IsNullOrWhiteSpace(returnUrl))
                         {
-                            Redirect(returnUrl);
+                           return Redirect(returnUrl);
                         }
                     }
 
