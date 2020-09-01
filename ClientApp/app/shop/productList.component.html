@@ -6,7 +6,7 @@
             [alt]="p.title"
             [title]="p.title"
         />
-        <div class="product-name">{{ p.categry }} - {{ p.size }}</div>
+        <div class="product-name">{{ p.category }} - {{ p.size }}</div>
 
         <ul class="product-props">
             <li><strong>Price:</strong> {{ p.price | currency }}</li>
@@ -14,6 +14,8 @@
             <li><strong>Title:</strong> {{ p.title }}</li>
             <li><strong>Description:</strong> {{ p.artDescription }}</li>
         </ul>
-        <button id="buyButton" class="btn btn-primary">Buy</button>
+        <button id="buyButton" class="btn btn-primary" (click)="addProduct(p)">
+            Buy
+        </button>
     </div>
 </div>

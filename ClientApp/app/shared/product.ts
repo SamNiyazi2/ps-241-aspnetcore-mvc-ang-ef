@@ -4,7 +4,7 @@
 export interface IProduct {
 
     id: number;
-    categry: string;
+    category: string;
     price: number;
     title: string;
     artDescription: string;

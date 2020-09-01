@@ -14,7 +14,7 @@ import { DataService } from "../shared/dataService";
 } )
 export class CartComponent implements OnInit {
 
-  constructor( private data: DataService ) {
+  constructor( public data: DataService ) {
 
 
   }

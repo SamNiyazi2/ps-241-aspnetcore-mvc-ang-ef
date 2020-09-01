@@ -1,7 +1,9 @@
-﻿
+﻿import { IOrderItem } from "./IOrderItem";
+
 // 08/31/2020 09:58 pm - SSN - [20200831-2156] - [001] - M12-02 - Creating a service (Angular)
 // 08/31/2020 11:19 pm - SSN - [20200831-2314] - [001] - M12-03 - Calling the API
 // 09/01/2020 02:34 am - SSN - [20200901-0108] - [003] - M12-04 - Using type safety
+// 09/01/2020 04:01 pm - SSN - [20200901-1547] - [005] - M12-07 - Sharing data across components
 
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
@@ -11,6 +13,9 @@ import { Observable, throwError } from "rxjs";
 import { IProduct } from "./product";
 import { ICred } from "./ICred";
 import { IToken } from "./IToken";
+import { IOrder } from "./IOrder";
+import { Order } from "./Order";
+import { OrderItem } from "./OrderItem";
 
 @Injectable()
 export class DataService {
@@ -19,6 +24,7 @@ export class DataService {
 
     public products: IProduct[] = [];
 
+    public order: IOrder = new Order();
 
     getToken( creds: ICred ): Observable<IToken> {
         return this.http.post<IToken>( "/account/createtoken", creds ).pipe(
@@ -64,6 +70,25 @@ export class DataService {
             "Something bad happened; please try again later." );
     }
 
+
+
+    public addToOrder( newProduct: IProduct ): void {
+
+
+
+        var item: IOrderItem = new OrderItem();
+        item.productId = newProduct.id;
+        item.productArtist = newProduct.artist;
+        item.productArtId = newProduct.artId;
+        item.productCategory = newProduct.category;
+        item.productSize = newProduct.size;
+        item.productTitle = newProduct.title;
+        item.unitPrice = newProduct.price;
+        item.quantity = 1
+
+        this.order.items.push( item );
+
+    }
 
 
 }
