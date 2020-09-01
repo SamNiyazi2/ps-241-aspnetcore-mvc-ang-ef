@@ -8,9 +8,10 @@ import { AppComponent } from "./app.component";
 import { ProductList } from "./shop/productList.component";
 import { DataService } from "./shared/dataService";
 import { HttpClientModule } from "@angular/common/http";
+import { CartComponent } from './shop/cart.component';
 
 @NgModule( {
-    declarations: [ AppComponent, ProductList ],
+    declarations: [ AppComponent, ProductList, CartComponent ],
     imports: [
         BrowserModule,
         HttpClientModule

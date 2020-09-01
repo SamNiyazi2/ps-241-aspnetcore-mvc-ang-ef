@@ -19,7 +19,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://p3132.nonbs.net:3132"
     }
