@@ -1,6 +1,9 @@
 ﻿// 08/31/2020 06:44 pm - SSN - [20200831-1843] - [001] - M11-08 - Your first Angular component
+// 08/31/2020 10:00 pm - SSN - [20200831-2156] - [002] - M12-02 - Creating a service (Angular)
 
 import { Component } from '@angular/core';
+
+import { DataService }from '../shared/dataService';
 
 @Component({
     selector: "product-list",
@@ -9,18 +12,12 @@ import { Component } from '@angular/core';
 })
 export class ProductList {
 
-    public products = [
-        {
-            title: 'First product',
-            price: 19.99
-        },
-        {
-            title: 'Second product',
-            price: 9.99
-        },
-        {
-            title: 'Third product',
-            price: 14.99
-        },
-    ]
+    constructor(data: DataService) {
+
+        this.products = data.products;
+    }
+
+    public products = [];
+
+
 }
