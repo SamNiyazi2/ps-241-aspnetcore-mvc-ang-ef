@@ -3,7 +3,8 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./wwwroot/clientapp/out-tsc/app",
-    "types": []
+    "types": [],
+    "skipLibCheck": true
   },
   "files": [
     "ClientApp/main.ts",
@@ -12,5 +13,9 @@
   "include": [
     "ClientApp/**/*.d.ts",
     "wwwroot/ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "typings"
   ]
 }

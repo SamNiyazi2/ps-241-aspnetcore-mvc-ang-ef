@@ -24,9 +24,4 @@
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ClientApp\" />
-    <Folder Include="node_modules\" />
-  </ItemGroup>
-
 </Project>
