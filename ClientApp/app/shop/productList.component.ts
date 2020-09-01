@@ -21,7 +21,7 @@ import { IToken } from "../shared/IToken";
 } )
 export class ProductList implements OnInit {
 
-    constructor( private data: DataService ) {
+    constructor( public data: DataService ) {
 
         this.products = data.products;
     }

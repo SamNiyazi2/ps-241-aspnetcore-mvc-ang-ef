@@ -71,12 +71,29 @@ export class DataService {
     }
 
 
+    public currentItemOrderQtyu( newProduct: IProduct ): number {
+
+        var item: IOrderItem = this.order.items.find( i => i.productId == newProduct.id );
+        if ( !item ) return -1;
+
+        return item.quantity;
+    }
+
 
     public addToOrder( newProduct: IProduct ): void {
 
 
+        var item: IOrderItem = this.order.items.find( i => i.productId == newProduct.id );
 
-        var item: IOrderItem = new OrderItem();
+        if ( item != null ) {
+
+            item.quantity++;
+            return;
+        }
+
+
+        item = new OrderItem();
+
         item.productId = newProduct.id;
         item.productArtist = newProduct.artist;
         item.productArtId = newProduct.artId;

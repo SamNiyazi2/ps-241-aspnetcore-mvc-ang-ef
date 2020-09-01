@@ -15,7 +15,7 @@
             <li><strong>Description:</strong> {{ p.artDescription }}</li>
         </ul>
         <button id="buyButton" class="btn btn-primary" (click)="addProduct(p)">
-            Buy
+            Buy {{ this.data.currentItemOrderQtyu(p) }}
         </button>
     </div>
 </div>
