@@ -1,22 +1,39 @@
 ﻿
 // 08/31/2020 09:58 pm - SSN - [20200831-2156] - [001] - M12-02 - Creating a service (Angular)
 // 08/31/2020 11:19 pm - SSN - [20200831-2314] - [001] - M12-03 - Calling the API
+// 09/01/2020 02:34 am - SSN - [20200901-0108] - [003] - M12-04 - Using type safety
 
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
-import { Observable } from 'rxjs';
+import { map, catchError } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { IProduct } from "./product";
+import { ICred } from "./ICred";
+import { IToken } from "./IToken";
 
 @Injectable()
 export class DataService {
 
     constructor( private http: HttpClient ) { }
 
-    public products = [];
+    public products: IProduct[] = [];
 
-    loadProducts(): Observable<boolean> {
-        return this.http.get( "/api/products" )
+
+    getToken( creds: ICred ): Observable<IToken> {
+        return this.http.post<IToken>( "/account/createtoken", creds ).pipe(
+            catchError( this.handleError )
+        );
+    }
+
+    loadProducts( token: IToken ): Observable<boolean> {
+
+        let options = {
+            // withCredentials: true,
+            headers: new HttpHeaders( { "Authorization": "bearer " + token.token } ),
+        };
+
+        return this.http.get( "/api/products", options )
             .pipe(
                 map( ( data: any[] ) => {
                     this.products = data;
@@ -24,4 +41,29 @@ export class DataService {
                 } )
             );
     }
+
+
+
+    handleError( error: HttpErrorResponse ): Observable<never> {
+
+        if ( error.error instanceof ErrorEvent ) {
+
+            // a client-side or network error occurred. Handle it accordingly.
+
+            console.error( "An error occurred:", error.error.message );
+
+        } else {
+            // the backend returned an unsuccessful response code.
+            // the response body may contain clues as to what went wrong.
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `body was: ${error.error}` );
+        }
+        // return an observable with a user-facing error message.
+        return throwError(
+            "Something bad happened; please try again later." );
+    }
+
+
+
 }
