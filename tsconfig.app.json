@@ -4,7 +4,8 @@
   "compilerOptions": {
     "outDir": "./wwwroot/clientapp/out-tsc/app",
     "types": [],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "experimentalDecorators": true
   },
   "files": [
     "ClientApp/main.ts",
