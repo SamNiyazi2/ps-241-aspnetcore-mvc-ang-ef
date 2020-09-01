@@ -80,14 +80,16 @@ export class DataService {
     }
 
 
-    public addToOrder( newProduct: IProduct ): void {
-
+    public addToOrder( newProduct: IProduct, qty: number = 1 ): void {
 
         var item: IOrderItem = this.order.items.find( i => i.productId == newProduct.id );
 
         if ( item != null ) {
 
-            item.quantity++;
+            item.quantity = item.quantity + qty;
+            if ( item.quantity <= 0 ) {
+                item.quantity = 0;
+            }
             return;
         }
 

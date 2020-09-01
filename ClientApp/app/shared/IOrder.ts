@@ -11,4 +11,6 @@ export interface IOrder {
     orderNumber: string;
     items: IOrderItem[];
 
+    subtotal: number;
+
 }

@@ -14,6 +14,16 @@
             <li><strong>Title:</strong> {{ p.title }}</li>
             <li><strong>Description:</strong> {{ p.artDescription }}</li>
         </ul>
+
+        <button
+            *ngIf="this.data.currentItemOrderQtyu(p) > 0"
+            id="buyButton"
+            class="btn btn-primary"
+            (click)="addProduct(p, -1)"
+        >
+            -
+        </button>
+
         <button id="buyButton" class="btn btn-primary" (click)="addProduct(p)">
             Buy {{ this.data.currentItemOrderQtyu(p) }}
         </button>

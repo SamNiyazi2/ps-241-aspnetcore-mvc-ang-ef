@@ -14,4 +14,10 @@ export class Order implements IOrder {
     orderNumber: string;
     items: Array<OrderItem> = new Array<OrderItem>();
 
+    // 09/01/2020 05:29 pm - SSN - [20200901-1726] - [001] - M12-09 - Using calculated data
+
+    get subtotal(): number {
+        let _subtotal = 0
+        return this.items.reduce( ( prev, curr ) => _subtotal += ( curr.quantity * curr.unitPrice ), _subtotal );
+    }
 }

@@ -60,16 +60,10 @@ export class ProductList implements OnInit {
 
 
     // 09/01/2020 04:27 pm - SSN - [20200901-1547] - [006] - M12-07 - Sharing data across components
-    addProduct( product: IProduct ): void {
+    addProduct( product: IProduct, qty: number = 1 ): void {
 
-        console.time( "101" );
-        console.log( "productList.components.ts - addProduct" );
-        console.log( product );
-
-        console.timeLog( "101" );
-        console.timeEnd( "101" );
-
-        this.data.addToOrder( product );
+        console.log( '20200901-0600', qty )
+        this.data.addToOrder( product, qty );
     }
 
 }

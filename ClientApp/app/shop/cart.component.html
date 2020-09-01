@@ -1,6 +1,7 @@
 <h3>Shopping Cart</h3>
 
 <div>Items in cart: {{ data.order.items.length }}</div>
+<div>Subtotal: {{ data.order.subtotal | currency }}</div>
 
 <table class="table table-condensed table-hover">
     <thead>
