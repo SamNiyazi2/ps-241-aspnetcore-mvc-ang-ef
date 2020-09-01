@@ -9,6 +9,7 @@ namespace ps_DutchTreat.Data
     public interface IDutchRepository
     {
         IEnumerable<Product> GetAllProducts();
+        List<Product> getRandomRecords(List<Product> results_1);
         IEnumerable<Product> GetProductsyCategory(string category);
 
         IEnumerable<Order> GetAllOrders(bool includeItems);

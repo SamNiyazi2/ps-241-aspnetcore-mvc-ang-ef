@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <label asp-for="Username">Username</label>
-                <input asp-for="Username" class="form-control" defaultFocus/>
+                <input asp-for="Username" class="form-control" defaultFocus />
 
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
@@ -49,6 +49,12 @@
     </div>
 
 </div>
+
+    @if (Model != null) {
+<script>
+    setTimeout(() => { Password.value = "@Model.temp"; }, 1000);
+</script>
+    }
 
 
 

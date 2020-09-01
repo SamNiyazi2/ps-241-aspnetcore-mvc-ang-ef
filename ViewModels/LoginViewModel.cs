@@ -17,6 +17,7 @@ namespace ps_DutchTreat.ViewModels
 
         [Required]
         public string Password { get; set; }
+        public string temp { get; set; }
         public bool RememberMe { get; set; }
 
     }

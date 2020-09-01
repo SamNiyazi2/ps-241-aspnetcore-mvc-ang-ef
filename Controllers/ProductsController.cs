@@ -39,7 +39,12 @@ namespace ps_DutchTreat.Controllers
 
             try
             {
-                return Ok(repository.GetAllProducts().Take(10));
+
+                List<Product> results_1 = repository.GetAllProducts().ToList();
+
+                List<Product> results = repository.getRandomRecords(results_1);
+
+                return Ok(results);
 
             }
             catch (Exception ex)

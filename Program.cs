@@ -57,6 +57,15 @@ namespace ps_DutchTreat
             builder.AddJsonFile("config_20200824.json", false, true)
                 .AddXmlFile("Config_20200824.xml", true)
                 .AddEnvironmentVariables();
+
+
+            // 09/01/2020 02:21 pm - SSN 
+            if (ctx.HostingEnvironment.IsDevelopment())
+            {
+                builder.AddUserSecrets<Program>();
+            }
+
+
         }
     }
 }

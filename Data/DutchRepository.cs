@@ -87,6 +87,25 @@ namespace ps_DutchTreat.Data
 
         }
 
+
+        public List<Product> getRandomRecords(List<Product> results_1)
+        {
+            List<Product> results = new List<Product>();
+            int rangeMax = results_1.Count();
+
+            Random rand = new Random();
+            var counter = 0;
+            while (rangeMax > 0 && counter < 10)
+            {
+                counter++;
+                results.Add(results_1[rand.Next(1, rangeMax)]);
+            }
+            //  rand.Next(1, 800);
+            return results;
+
+        }
+
+
         public IEnumerable<Product> GetProductsyCategory(string category)
         {
             return ctx.Products

@@ -14,7 +14,7 @@ import { IToken } from '../shared/IToken';
 @Component( {
     selector: "product-list",
     templateUrl: "./productList.component.html",
-    styleUrls: []
+    styleUrls: [ 'productList.component.css' ]
 } )
 export class ProductList implements OnInit {
 

@@ -1,0 +1,37 @@
+/* // 09/01/2020 05:31 am - SSN - [20200901-0415] - [001] - M12-05 - Implementing a template */
+
+.product-info {
+    border: 1px solid grey;
+
+    padding: 8px 8px 10px 10px;
+
+    background-color: lightgray;
+}
+
+.product-info img {
+    max-width: 100px;
+    float: left;
+    margin: 0px 8px 0px 0px;
+    border: solid 4px black;
+}
+
+.product-info .product-name {
+    font-size: large;
+    font-weight: bold;
+}
+
+.product-info ul {
+    list-style-type: none;
+    margin: 0px !important;
+    padding: 0px !important;
+    list-style-position: unset !important;
+}
+
+.product-info ul li {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+#buyButton {
+    float: right;
+}

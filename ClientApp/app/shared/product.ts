@@ -14,4 +14,5 @@ export interface IProduct {
     artistBirthDate: Date;
     artistDeathDate: Date;
     artistNationality: string;
+    size: string;
 }

@@ -36,15 +36,27 @@ namespace ps_DutchTreat.Controllers
         }
 
 
+        class Cred
+        {
+            public string Username { get; set; }
+            public string Password { get; set; }
+        }
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("index", "app");
             }
+            Cred cred = new Cred();
+            config.Bind("Cred", cred);
 
+            LoginViewModel model = new LoginViewModel(); ;
+            if (cred != null)
+            {
+                model = new LoginViewModel { Username = cred.Username, temp = cred.Password };
+            }
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -60,7 +72,7 @@ namespace ps_DutchTreat.Controllers
                         string returnUrl = Request.Query["ReturnUrl"].FirstOrDefault();
                         if (!string.IsNullOrWhiteSpace(returnUrl))
                         {
-                           return Redirect(returnUrl);
+                            return Redirect(returnUrl);
                         }
                     }
 

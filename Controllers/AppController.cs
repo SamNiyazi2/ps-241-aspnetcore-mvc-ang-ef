@@ -82,28 +82,19 @@ namespace ps_DutchTreat.Controllers
         public IActionResult Shop()
         {
             var results_1 = dutchRepository.GetAllProducts().ToList();
-            List<Product> results = new List<Product>();
-
-            Random rand = new Random();
-            var counter = 0;
-            while (counter < 10)
-            {
-                counter++;
-                results.Add(results_1[rand.Next(1, 800)]);
-            }
-            rand.Next(1, 800);
-
+            List<Product> results = dutchRepository.getRandomRecords(results_1);
 
             return View(results);
         }
+
 
 
         // 08/31/2020 04:39 pm - SSN - [20200831-1458] - [001] - M11-06 - Integrating the project 
 
         [Authorize]
         public IActionResult Shop_angular()
-        { 
-            return View( );
+        {
+            return View();
         }
 
 
