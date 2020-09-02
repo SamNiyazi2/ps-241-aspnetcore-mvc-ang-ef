@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form (submit)="onLogin()">
+        <form (submit)="onLogin()" #theForm="ngForm" novaidate>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input
@@ -9,8 +9,21 @@
                     name="username"
                     [(ngModel)]="creds.username"
                     autocomplete="username"
+                    #username="ngModel"
+                    required
                 />
+                <div
+                    class="text-danger"
+                    *ngIf="
+                        username.touched &&
+                        username.invalid &&
+                        username.errors.required
+                    "
+                >
+                    User name is required
+                </div>
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input
@@ -19,11 +32,28 @@
                     name="password"
                     [(ngModel)]="creds.password"
                     autocomplete="current-password"
+                    #password="ngModel"
+                    required
                 />
+                <div
+                    class="text-danger"
+                    *ngIf="
+                        password.touched &&
+                        password.invalid &&
+                        password.errors.required
+                    "
+                >
+                    Password is required
+                </div>
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-success" value="Login" />
-                <a routerLink="/" class="btn btn-default">Cancel</a>
+                <input
+                    type="submit"
+                    class="btn btn-success"
+                    value="Login"
+                    [disabled]="!theForm.valid"
+                />
+                <button routerLink="/" class="btn btn-default">Cancel</button>
             </div>
         </form>
     </div>

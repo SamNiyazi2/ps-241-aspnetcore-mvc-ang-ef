@@ -128,4 +128,10 @@ menu li {
     background-color: lightgoldenrodyellow !important;
 }
 
- 
+.btn-default{
+     background-color:#ccc;
+}
+
+button:disabled, input[type=submit]{
+    cursor: not-allowed !important;
+}

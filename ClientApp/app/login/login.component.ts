@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     console.log( 'login.component.ts - 20200901-2124' );
     console.log( this.creds );
-    this.creds.username = "XXXXXXXXXX";
+
 
   }
 }
