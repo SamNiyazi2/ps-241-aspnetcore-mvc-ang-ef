@@ -1,0 +1,7 @@
+
+6:49 PM 9/1/2020
+
+Copied from downloaded file
+checkout.component.* (3 files)
+
+C:\Sams_P\PS\aspnetcore-mvc-efcore-bootstrap-angular-web\BuildingASPNETCore2-master.zip\BuildingASPNETCore2-master\Resources

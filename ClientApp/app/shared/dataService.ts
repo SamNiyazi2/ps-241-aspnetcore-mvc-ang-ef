@@ -88,7 +88,7 @@ export class DataService {
 
             item.quantity = item.quantity + qty;
             if ( item.quantity <= 0 ) {
-                item.quantity = 0;
+                this.order.items = this.order.items.filter( i => i.productId != newProduct.id );
             }
             return;
         }
