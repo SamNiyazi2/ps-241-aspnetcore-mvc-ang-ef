@@ -90,8 +90,8 @@ namespace ps_DutchTreat.Controllers
 
 
         // 08/31/2020 04:39 pm - SSN - [20200831-1458] - [001] - M11-06 - Integrating the project 
-
-        [Authorize]
+        // 09/01/2020 07:47 pm - SSN - [20200901-1940] - [002] - M13-03 - Support login
+        // Take out   [Authorize]
         public IActionResult Shop_angular()
         {
             return View();

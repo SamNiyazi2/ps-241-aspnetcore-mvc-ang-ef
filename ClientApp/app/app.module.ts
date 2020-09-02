@@ -14,17 +14,19 @@ import { CartComponent } from './shop/cart.component';
 import { RouterModule } from "@angular/router";
 import { ShopComponent } from './shop/shop.component';
 import { Checkout } from './checkout/checkout.component';
+import { LoginComponent } from './login/login.component';
 
 
 let routes = [
 
     { path: "", component: ShopComponent },
-    { path: "checkout", component: Checkout }
+    { path: "checkout", component: Checkout },
+    { path: "login", component: LoginComponent }
 ];
 
 
 @NgModule( {
-    declarations: [ AppComponent, ProductList, CartComponent, ShopComponent, Checkout ],
+    declarations: [ AppComponent, ProductList, CartComponent, ShopComponent, Checkout, LoginComponent ],
     imports: [
         BrowserModule,
         HttpClientModule,

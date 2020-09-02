@@ -26,9 +26,10 @@
     </tbody>
 </table>
 
-<a
-    [routerLink]="['checkout']"
+<button
+    (click)="onCheckout()"
     class="btn btn-primary"
     *ngIf="data.order.items.length > 0"
-    >Checkout</a
 >
+    Checkout
+</button>

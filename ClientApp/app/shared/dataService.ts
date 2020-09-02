@@ -5,6 +5,7 @@
 // 09/01/2020 02:34 am - SSN - [20200901-0108] - [003] - M12-04 - Using type safety
 // 09/01/2020 04:01 pm - SSN - [20200901-1547] - [005] - M12-07 - Sharing data across components
 
+// 09/01/2020 07:42 pm - SSN - [20200901-1940] - [001] - M13-03 - Support login
 
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -22,9 +23,19 @@ export class DataService {
 
     constructor( private http: HttpClient ) { }
 
+    private token: string = "";
+    private tokenExpiration: Date;
+
     public products: IProduct[] = [];
 
     public order: IOrder = new Order();
+
+
+    public get loginRequired(): boolean {
+
+        return this.token.length === 0 || this.tokenExpiration > new Date();
+    }
+
 
     getToken( creds: ICred ): Observable<IToken> {
         return this.http.post<IToken>( "/account/createtoken", creds ).pipe(
