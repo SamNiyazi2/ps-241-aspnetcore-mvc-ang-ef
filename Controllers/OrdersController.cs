@@ -65,7 +65,7 @@ namespace ps_DutchTreat.Controllers
             try
             {
                 // 08/27/2020 11:03 am - SSN - [20200827-1038] - [005] - M09-08 - Use identity in read operations
-                
+
                 string userName = User.Identity.Name;
 
                 Order order = repository.GetOrderById(userName, id);
@@ -106,6 +106,11 @@ namespace ps_DutchTreat.Controllers
                     if (newOrder.OrderDate == DateTime.MinValue)
                     {
                         newOrder.OrderDate = DateTime.Now;
+                    }
+
+                    foreach (OrderItem oi in newOrder.Items)
+                    {
+                        oi.Product = repository.GetProduct(oi.Product.Id);
                     }
 
                     // 08/27/2020 11:07 am - SSN - [20200827-1038] - [007] - M09-08 - Use identity in read operations

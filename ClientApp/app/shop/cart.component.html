@@ -2,29 +2,32 @@
 
 <div>Items in cart: {{ data.order.items.length }}</div>
 <div>Subtotal: {{ data.order.subtotal | currency }}</div>
+<div class="cssContent">
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <td>Product</td>
+                <td>Qty</td>
+                <td>Price</td>
+                <td>Total</td>
+            </tr>
+        </thead>
 
-<table class="table table-condensed table-hover">
-    <thead>
-        <tr>
-            <td>Product</td>
-            <td>Qty</td>
-            <td>Price</td>
-            <td>Total</td>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let o of data.order.items">
-            <td>
-                {{ o.productCategory }} <br />
-                {{ o.productTitle }}
-            </td>
-            <td>{{ o.quantity }}</td>
-            <td>{{ o.unitPrice | currency }}</td>
-            <td>{{ o.unitPrice * o.quantity | currency }}</td>
-        </tr>
-    </tbody>
-</table>
+        <tbody>
+            <tr *ngFor="let o of data.order.items">
+                <td>
+                    {{ o.productCategory }} <br />
+                    {{ o.productTitle }}
+                </td>
+                <td>{{ o.quantity }}</td>
+                <td>{{ o.unitPrice | currency }}</td>
+                <td>
+                    {{ o.unitPrice * o.quantity | currency }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <button
     (click)="onCheckout()"

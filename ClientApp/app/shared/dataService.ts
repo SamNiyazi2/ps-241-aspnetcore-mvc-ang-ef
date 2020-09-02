@@ -29,6 +29,7 @@ export class DataService {
     public products: IProduct[] = [];
 
     public order: IOrder = new Order();
+    public order_Confirmed: IOrder;
 
 
     public get loginRequired(): boolean {
@@ -39,14 +40,8 @@ export class DataService {
     // 09/01/2020 10:24 pm - SSN - [20200901-2220] - [001] - M13-06 - Use token authentication
     login( creds: ICred ): Observable<boolean> {
 
-        console.log( 'dataService.ts - login - 20200901-2228' );
-
         return this.http.post<IToken>( "/account/createtoken", creds )
             .pipe( map( ( data: IToken ) => {
-
-                console.log( 'dataService.ts - login - 20200901-2228 - Received token' );
-                console.log( data );
-
 
                 this.token = data.token
                 this.tokenExpiration = new Date( data.expiration );
@@ -56,18 +51,56 @@ export class DataService {
     }
 
 
+    // 09/01/2020 11:58 pm - SSN - [20200901-2354] - [001] - M13-07 - implement server-side checkout
+
+    pad( x1: number, spaces: number ): string {
+        return x1.toString().padStart( spaces, '0' );
+    }
+
+    public checkout(): Observable<object> {
+
+        let options = this.getRequestHeaderOptions();
+        if ( !this.order.orderNumber ) {
+            let d = new Date();
+            this.order.orderNumber = this.pad( d.getFullYear(), 4 )
+                + this.pad( d.getMonth() + 1, 2 ) + this.pad( d.getDate(), 2 ) + "-"
+                + this.pad( d.getHours(), 2 ) + this.pad( d.getMinutes(), 2 ) + '-' +
+                this.pad( d.getMilliseconds(), 4 );
+
+        }
+
+        return this.http.post( "/api/orders", this.order, options ).pipe( map( response => {
+            this.order = new Order();
+            return response;
+        } ) );
+    }
+
+
     getToken( creds: ICred ): Observable<IToken> {
         return this.http.post<IToken>( "/account/createtoken", creds ).pipe(
             catchError( this.handleError )
         );
     }
 
+    getRequestHeaderOptions( token: IToken = null ) {
+
+        let _token = "";
+        if ( token ) {
+            _token = token.token;
+        } else {
+            _token = this.token;
+        }
+
+        return {
+            // withCredentials: true,
+            headers: new HttpHeaders( { "Authorization": "bearer " + _token } ),
+        };
+    }
+
+
     loadProducts( token: IToken ): Observable<boolean> {
 
-        let options = {
-            // withCredentials: true,
-            headers: new HttpHeaders( { "Authorization": "bearer " + token.token } ),
-        };
+        let options = this.getRequestHeaderOptions( token );
 
         return this.http.get( "/api/products", options )
             .pipe(
@@ -85,7 +118,6 @@ export class DataService {
         if ( error.error instanceof ErrorEvent ) {
 
             // a client-side or network error occurred. Handle it accordingly.
-
             console.error( "An error occurred:", error.error.message );
 
         } else {

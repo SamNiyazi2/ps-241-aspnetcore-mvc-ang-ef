@@ -20,14 +20,12 @@ export class LoginComponent implements OnInit {
   errorMessage: string = "";
 
   public creds = {
-    username: "",
-    password: ""
+    username: "john@doe.com",
+    password: "P@ssw0rd!101!"
   }
 
 
   onLogin() {
-    console.log( 'login.component.ts - 20200901-2124' );
-    console.log( this.creds );
 
     this.errorMessage = "";
 
@@ -38,7 +36,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate( [ '/' ] );
         }
         else {
-          this.router.navigate( [ '/chcekout' ] );
+          this.router.navigate( [ '/checkout' ] );
 
         }
       } else {

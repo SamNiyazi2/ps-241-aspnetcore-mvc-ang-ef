@@ -79,13 +79,17 @@ namespace ps_DutchTreat.Data
 
         public IEnumerable<Product> GetAllProducts()
         {
-            logger.LogInformation("Call to GetAllProducts - 20200825-1122");
-
             return ctx.Products
                 .OrderBy(p => p.Title)
                 .ToList();
+              
+       }
 
+        public  Product GetProduct(int id)
+        {
+            return ctx.Products.Where(p => p.Id == id).FirstOrDefault();
         }
+
 
 
         public List<Product> getRandomRecords(List<Product> results_1)

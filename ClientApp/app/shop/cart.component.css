@@ -1,0 +1,8 @@
+.cssContent {
+    height: 320px;
+
+    overflow-y: scroll;
+    margin: 16px 0px;
+    border: solid 1px #ddd;
+    border-radius: 6px;
+}

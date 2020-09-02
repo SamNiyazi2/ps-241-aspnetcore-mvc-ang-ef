@@ -17,17 +17,20 @@ import { Checkout } from './checkout/checkout.component';
 import { LoginComponent } from './login/login.component';
 
 import { FormsModule } from "@angular/forms";
+import { ConfirmationComponent } from './checkout/confirmation/confirmation.component';
 
 let routes = [
 
     { path: "", component: ShopComponent },
     { path: "checkout", component: Checkout },
-    { path: "login", component: LoginComponent }
+    { path: "login", component: LoginComponent },
+    { path: "confirmation", component: ConfirmationComponent }
 ];
 
 
 @NgModule( {
-    declarations: [ AppComponent, ProductList, CartComponent, ShopComponent, Checkout, LoginComponent ],
+    declarations: [ AppComponent, ProductList, CartComponent, ShopComponent,
+        Checkout, LoginComponent, ConfirmationComponent ],
     imports: [
         BrowserModule,
         HttpClientModule,
