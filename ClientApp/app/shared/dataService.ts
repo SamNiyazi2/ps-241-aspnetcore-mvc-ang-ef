@@ -36,6 +36,25 @@ export class DataService {
         return this.token.length === 0 || this.tokenExpiration > new Date();
     }
 
+    // 09/01/2020 10:24 pm - SSN - [20200901-2220] - [001] - M13-06 - Use token authentication
+    login( creds: ICred ): Observable<boolean> {
+
+        console.log( 'dataService.ts - login - 20200901-2228' );
+
+        return this.http.post<IToken>( "/account/createtoken", creds )
+            .pipe( map( ( data: IToken ) => {
+
+                console.log( 'dataService.ts - login - 20200901-2228 - Received token' );
+                console.log( data );
+
+
+                this.token = data.token
+                this.tokenExpiration = new Date( data.expiration );
+                return true;
+            } ) );
+
+    }
+
 
     getToken( creds: ICred ): Observable<IToken> {
         return this.http.post<IToken>( "/account/createtoken", creds ).pipe(
