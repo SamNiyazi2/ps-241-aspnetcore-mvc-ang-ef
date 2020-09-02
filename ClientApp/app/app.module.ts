@@ -16,6 +16,7 @@ import { ShopComponent } from './shop/shop.component';
 import { Checkout } from './checkout/checkout.component';
 import { LoginComponent } from './login/login.component';
 
+import { FormsModule } from "@angular/forms";
 
 let routes = [
 
@@ -33,7 +34,8 @@ let routes = [
         RouterModule.forRoot( routes, {
             useHash: true,
             enableTracing: false  // for debugging 
-        } )
+        } ),
+        FormsModule
     ],
 
     providers: [ DataService ],
