@@ -40,6 +40,8 @@ namespace ps_DutchTreat.Data
                 {
                     // Todo
                     // Do nothing
+                    // 09/25/2022 06:01 pm - SSN - Failing on Azure.
+                    throw ex;
 
                 }
             }
@@ -52,10 +54,11 @@ namespace ps_DutchTreat.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // 09/25/2022 05:57 pm - SSN - Remove default
+            //  base.OnModelCreating(modelBuilder);
 
             // 09/25/2022 01:42 pm - SSN - Added schema
-            modelBuilder.HasDefaultSchema("PS-241");
+            modelBuilder.HasDefaultSchema("ps_241");
 
 
             // 09/25/2022 03:14 am - SSN - Why?  Take out.

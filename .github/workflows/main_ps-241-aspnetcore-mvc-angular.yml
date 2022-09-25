@@ -45,25 +45,23 @@ jobs:
           $exclude =  @('windows', 'microsoft', 'az', 'program files', 'inetpub', 'drivers', 'packages', 'node_modules')
           function excl  ($f) {  -not (  $f -match ( $exclude -join '|' ))  }
 
-          echo  Test...1
-          get-childitem -path "." -recurse -directory| where { excl -f $_.fullname }
+          # echo  Test...1
+          #   Directory: D:\a\ps-241-aspnetcore-mvc-ang-ef\ps-241-aspnetcore-mvc-ang-ef
+          # get-childitem -path "." -recurse -directory| where { excl -f $_.fullname }
 
-          echo  Test...2
-          get-childitem -path "\" -recurse -directory| where { excl -f $_.fullname }
+          # echo  Test...2
+          #  Directory: D:\
+          # get-childitem -path "\" -recurse -directory| where { excl -f $_.fullname }
 
           #echo  Test...3
           #xcopy /wwwroot/ClientApp/dist/*.* ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist
           
-          echo  Test...4
+          echo  Copying Angular build output...
           copy -Path ./wwwroot/ClientApp -Destination ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist  -Recurse
 
 
-          echo  Test...5
-          get-childitem -path ${{env.DOTNET_ROOT}} -recurse -directory| where { excl -f $_.fullname }
-
-
-          echo Copying to [${{env.DOTNET_ROOT}}]
-
+          # echo Copying to [${{env.DOTNET_ROOT}}]
+          # ${{env.DOTNET_ROOT}} = [C:\Users\runneradmin\AppData\Local\Microsoft\dotnet]
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
