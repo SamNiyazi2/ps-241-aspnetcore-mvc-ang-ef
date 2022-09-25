@@ -1,6 +1,7 @@
 {
   "ConnectionStrings": {
-    "DutchConnectionString": "server=ssnmach006;database=PS-DutchTreatDB-20200824;integrated security=true;MultipleActiveResultSets=true"
+    //"DutchConnectionString": "server=ssnmach006;database=PS-DutchTreatDB-20200824;integrated security=true;MultipleActiveResultSets=true",
+    "DutchConnectionString": "server=ssnmach006;database=PS-DutchTreatDB-20220925a;integrated security=true;MultipleActiveResultSets=true"
   },
   "urls": "http://p3132.nonbs.net:3132",
   "Logging": {

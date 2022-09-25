@@ -16,5 +16,6 @@
     <WebStackScaffolding_DbContextTypeFullName>ps_DutchTreat.Data.DutchContext</WebStackScaffolding_DbContextTypeFullName>
     <Controller_SelectedScaffolderID>ApiControllerEmptyScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Controller</Controller_SelectedScaffolderCategoryPath>
+    <NameOfLastUsedPublishProfile>C:\Sams_P\PS\aspnetcore-mvc-efcore-bootstrap-angular-web\hw_DutchTreat\ps-DutchTreat\Properties\PublishProfiles\ps-241-aspnetcore-mvc-angular - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

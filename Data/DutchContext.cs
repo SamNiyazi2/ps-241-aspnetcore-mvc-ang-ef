@@ -32,6 +32,9 @@ namespace ps_DutchTreat.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            // 09/25/2022 01:42 pm - SSN - Added schema
+            modelBuilder.HasDefaultSchema("PS-241");
 
             modelBuilder.Entity<Product>()
                 .HasData(new Product
