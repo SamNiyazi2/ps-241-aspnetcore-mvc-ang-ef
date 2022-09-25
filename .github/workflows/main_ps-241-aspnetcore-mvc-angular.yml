@@ -35,7 +35,7 @@ jobs:
         run: npm install
 
 
-      - name: npm run build:prod
+      - name: npm run build
         run: |
           npm run build:prod 
           xcopy dist\*.* ${{env.DOTNET_ROOT}}/ClientApp/dist/*.*
