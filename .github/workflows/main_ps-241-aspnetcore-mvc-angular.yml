@@ -44,9 +44,22 @@ jobs:
 
           $exclude =  @('windows', 'microsoft', 'az', 'program files', 'inetpub', 'drivers', 'packages', 'node_modules')
           function excl  ($f) {  -not (  $f -match ( $exclude -join '|' ))  }
+
+          echo  Test...1
+          get-childitem -path "." -recurse -directory| where { excl -f $_.fullname }
+
+          echo  Test...2
           get-childitem -path "\" -recurse -directory| where { excl -f $_.fullname }
 
-          xcopy /wwwroot/ClientApp/dist/*.* ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist/
+          echo  Test...3
+          xcopy /wwwroot/ClientApp/dist/*.* ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist
+          
+          echo  Test...4
+          copy -Path ./wwwroot/ClientApp -Destination ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist  -Recurse
+
+
+          echo  Test...5
+          get-childitem -path ${{env.DOTNET_ROOT}} -recurse -directory| where { excl -f $_.fullname }
 
 
 
