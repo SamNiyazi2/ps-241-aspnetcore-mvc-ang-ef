@@ -6,6 +6,12 @@
     <UserSecretsId>b319bb07-6057-4a14-9e46-99a8cdb5cb46</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\ts\**" />
+    <Content Remove="wwwroot\ts\**" />
+    <EmbeddedResource Remove="wwwroot\ts\**" />
+    <None Remove="wwwroot\ts\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="wwwroot\index.html" />
   </ItemGroup>
   <ItemGroup>
