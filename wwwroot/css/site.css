@@ -132,6 +132,8 @@ menu li {
      background-color:#ccc;
 }
 
-button:disabled, input[type=submit]{
+
+/* 09/25/2022 10:59 am - SSN - Updated*/
+button:disabled, input[type=submit]:disabled {
     cursor: not-allowed !important;
 }
