@@ -10,21 +10,25 @@
     <Compile Remove="wwwroot\css\font-awesome\fonts\**" />
     <Compile Remove="wwwroot\css\font-awesome\less\**" />
     <Compile Remove="wwwroot\css\font-awesome\scss\**" />
+    <Compile Remove="wwwroot\js\bootstrap\js\**" />
     <Compile Remove="wwwroot\ts\**" />
     <Content Remove="wwwroot\css\font-awesome\css\**" />
     <Content Remove="wwwroot\css\font-awesome\fonts\**" />
     <Content Remove="wwwroot\css\font-awesome\less\**" />
     <Content Remove="wwwroot\css\font-awesome\scss\**" />
+    <Content Remove="wwwroot\js\bootstrap\js\**" />
     <Content Remove="wwwroot\ts\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\css\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\fonts\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\less\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\scss\**" />
+    <EmbeddedResource Remove="wwwroot\js\bootstrap\js\**" />
     <EmbeddedResource Remove="wwwroot\ts\**" />
     <None Remove="wwwroot\css\font-awesome\css\**" />
     <None Remove="wwwroot\css\font-awesome\fonts\**" />
     <None Remove="wwwroot\css\font-awesome\less\**" />
     <None Remove="wwwroot\css\font-awesome\scss\**" />
+    <None Remove="wwwroot\js\bootstrap\js\**" />
     <None Remove="wwwroot\ts\**" />
   </ItemGroup>
   <ItemGroup>
