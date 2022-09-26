@@ -158,7 +158,9 @@ namespace ps_DutchTreat
 
             app.UseStaticFiles();
 
-            app.UseNodeModules();
+
+            // 09/25/2022 10:29 pm - SSN - Causing a problem on Azure site???
+            // app.UseNodeModules();
 
 
 
