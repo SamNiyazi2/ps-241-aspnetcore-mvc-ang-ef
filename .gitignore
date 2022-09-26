@@ -2,7 +2,6 @@ obj
 bin
 .vs
 ssn_*.cmd
-wwwroot/img/**
 node_modules/**
 PutBackForAzure/Data/art.json
 /wwwroot/ClientApp/dist

@@ -27,13 +27,7 @@ namespace ps_DutchTreat
 
         private static void check_angular_scripts()
         {
-            SSN_Angular_Script_Util.Angular_Scripts_loader.Angular_runtime_script_dir = @"\ClientApp\dist";
-            SSN_Angular_Script_Util.Angular_Scripts_loader.Angular_runtime_script_dir_relative = "/ClientApp/dist/";
-            SSN_Angular_Script_Util.Angular_Scripts_loader.Angular_runtime_build_index_file = @"wwwroot\ClientApp\dist\index.html";
-            SSN_Angular_Script_Util.Angular_Scripts_loader.Angular_script_holder_prod = @"views\app\shop_angular_script_placeholder_prod.cshtml";
-
-            SSN_Angular_Script_Util.Angular_Scripts_loader.LoadScripts();
-        }
+                  }
 
         // 08/25/2020 07:23 am - SSN - [20200825-0651] - [002] - M07-06 - Seeding the database 
         private static void RunSeeding(IHost host)
