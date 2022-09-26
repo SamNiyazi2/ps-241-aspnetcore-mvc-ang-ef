@@ -54,8 +54,10 @@ namespace ps_DutchTreat.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // 09/25/2022 05:57 pm - SSN - Remove default
-            //  base.OnModelCreating(modelBuilder);
+            // 09/25/2022 07:09 am - SSN - Added
+            // Leaving out causes an Identity error.
+            // AggregateException: One or more errors occurred. (The entity type 'IdentityUserLogin<string>' requires a primary key to be defined. If you intended to use a keyless entity type call 'HasNoKey()'.)
+            base.OnModelCreating(modelBuilder);
 
             // 09/25/2022 01:42 pm - SSN - Added schema
             modelBuilder.HasDefaultSchema("ps_241");
