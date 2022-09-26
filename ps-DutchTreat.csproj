@@ -6,32 +6,27 @@
     <UserSecretsId>b319bb07-6057-4a14-9e46-99a8cdb5cb46</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="wwwroot\css\font-awesome\css\**" />
-    <Compile Remove="wwwroot\css\font-awesome\fonts\**" />
     <Compile Remove="wwwroot\css\font-awesome\less\**" />
     <Compile Remove="wwwroot\css\font-awesome\scss\**" />
     <Compile Remove="wwwroot\js\bootstrap\js\**" />
     <Compile Remove="wwwroot\ts\**" />
-    <Content Remove="wwwroot\css\font-awesome\css\**" />
-    <Content Remove="wwwroot\css\font-awesome\fonts\**" />
     <Content Remove="wwwroot\css\font-awesome\less\**" />
     <Content Remove="wwwroot\css\font-awesome\scss\**" />
     <Content Remove="wwwroot\js\bootstrap\js\**" />
     <Content Remove="wwwroot\ts\**" />
-    <EmbeddedResource Remove="wwwroot\css\font-awesome\css\**" />
-    <EmbeddedResource Remove="wwwroot\css\font-awesome\fonts\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\less\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\scss\**" />
     <EmbeddedResource Remove="wwwroot\js\bootstrap\js\**" />
     <EmbeddedResource Remove="wwwroot\ts\**" />
-    <None Remove="wwwroot\css\font-awesome\css\**" />
-    <None Remove="wwwroot\css\font-awesome\fonts\**" />
     <None Remove="wwwroot\css\font-awesome\less\**" />
     <None Remove="wwwroot\css\font-awesome\scss\**" />
     <None Remove="wwwroot\js\bootstrap\js\**" />
     <None Remove="wwwroot\ts\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\css\font-awesome\css\font-awesome.css.map" />
+    <None Include="wwwroot\css\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\css\font-awesome\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\index.html" />
   </ItemGroup>
   <ItemGroup>
@@ -47,10 +42,10 @@
     <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="3.1.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
+    <PackageReference Include="SSN_Angular_Script_Util" Version="1.0.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\css\bootstrap\" />
-    <Folder Include="wwwroot\css\font-awesome\" />
   </ItemGroup>
 </Project>

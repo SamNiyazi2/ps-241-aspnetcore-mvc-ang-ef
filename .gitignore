@@ -6,9 +6,7 @@ wwwroot/img/**
 node_modules/**
 PutBackForAzure/Data/art.json
 /wwwroot/ClientApp/dist
-/wwwroot/js/jQuery_Copied/ssn_notes.txt
-/wwwroot/js/jQuery_Copied/jquery.validate.min.js
-/wwwroot/js/jQuery_Copied/jquery.validate.unobtrusive.min.js
 /wwwroot/css/ssn_notes.txt
 /wwwroot/js/bootstrap/ssn_notes.txt
 /wwwroot/js/jquery/ssn_notes.txt
+/wwwroot/js/jQuery_Copied/ssn_notes.txt
