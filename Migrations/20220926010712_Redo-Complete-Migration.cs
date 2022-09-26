@@ -3,17 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ps_DutchTreat.Migrations
 {
-    public partial class Identity202008261755 : Migration
+    public partial class RedoCompleteMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "userId",
-                table: "Orders",
-                nullable: true);
+            migrationBuilder.EnsureSchema(
+                name: "ps_241");
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
+                schema: "ps_241",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -28,6 +27,7 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
+                schema: "ps_241",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -54,7 +54,32 @@ namespace ps_DutchTreat.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                schema: "ps_241",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Category = table.Column<string>(nullable: true),
+                    Size = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    ArtDescription = table.Column<string>(nullable: true),
+                    ArtDating = table.Column<string>(nullable: true),
+                    ArtId = table.Column<string>(nullable: true),
+                    Artist = table.Column<string>(nullable: true),
+                    ArtistBirthDate = table.Column<DateTime>(nullable: false),
+                    ArtistDeathDate = table.Column<DateTime>(nullable: false),
+                    ArtistNationality = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
+                schema: "ps_241",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -69,6 +94,7 @@ namespace ps_DutchTreat.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -76,6 +102,7 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
+                schema: "ps_241",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -90,6 +117,7 @@ namespace ps_DutchTreat.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -97,6 +125,7 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserLogins",
+                schema: "ps_241",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
@@ -110,6 +139,7 @@ namespace ps_DutchTreat.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -117,6 +147,7 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
+                schema: "ps_241",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -128,12 +159,14 @@ namespace ps_DutchTreat.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -141,6 +174,7 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
+                schema: "ps_241",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -154,30 +188,75 @@ namespace ps_DutchTreat.Migrations
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalSchema: "ps_241",
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                schema: "ps_241",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    OrderNumber = table.Column<string>(nullable: true),
+                    userId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalSchema: "ps_241",
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
-            // 08/27/2020 12:12 am - SSN - Don't know how this got here!!!
-            //migrationBuilder.InsertData(
-            //    table: "Products",
-            //    columns: new[] { "Id", "ArtDating", "ArtDescription", "ArtId", "Artist", "ArtistBirthDate", "ArtistDeathDate", "ArtistNationality", "Category", "Price", "Size", "Title" },
-            //    values: new object[] { 1, null, null, null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "", 0m, null, null });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_userId",
-                table: "Orders",
-                column: "userId");
+            migrationBuilder.CreateTable(
+                name: "OrderItem",
+                schema: "ps_241",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    UnitPrice = table.Column<decimal>(nullable: false),
+                    OrderId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItem", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalSchema: "ps_241",
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrderItem_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalSchema: "ps_241",
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
+                schema: "ps_241",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
+                schema: "ps_241",
                 table: "AspNetRoles",
                 column: "NormalizedName",
                 unique: true,
@@ -185,81 +264,96 @@ namespace ps_DutchTreat.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
+                schema: "ps_241",
                 table: "AspNetUserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserLogins_UserId",
+                schema: "ps_241",
                 table: "AspNetUserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserRoles_RoleId",
+                schema: "ps_241",
                 table: "AspNetUserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
+                schema: "ps_241",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
+                schema: "ps_241",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Orders_AspNetUsers_userId",
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_OrderId",
+                schema: "ps_241",
+                table: "OrderItem",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItem_ProductId",
+                schema: "ps_241",
+                table: "OrderItem",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_userId",
+                schema: "ps_241",
                 table: "Orders",
-                column: "userId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "userId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Orders_AspNetUsers_userId",
-                table: "Orders");
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+                name: "AspNetUserClaims",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                name: "AspNetUserLogins",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                name: "AspNetUserRoles",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                name: "AspNetUserTokens",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                name: "OrderItem",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "AspNetRoles",
+                schema: "ps_241");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Orders",
+                schema: "ps_241");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Orders_userId",
-                table: "Orders");
+            migrationBuilder.DropTable(
+                name: "Products",
+                schema: "ps_241");
 
-
-            // 08/27/2020 12:12 am - SSN - Don't know how this got here!!!
-            //migrationBuilder.DeleteData(
-            //    table: "Products",
-            //    keyColumn: "Id",
-            //    keyValue: 1);
-
-            migrationBuilder.DropColumn(
-                name: "userId",
-                table: "Orders");
+            migrationBuilder.DropTable(
+                name: "AspNetUsers",
+                schema: "ps_241");
         }
     }
 }

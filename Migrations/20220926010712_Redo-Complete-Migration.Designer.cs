@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ps_DutchTreat.Data;
 
 namespace ps_DutchTreat.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    partial class DutchContextModelSnapshot : ModelSnapshot
+    [Migration("20220926010712_Redo-Complete-Migration")]
+    partial class RedoCompleteMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,17 +116,6 @@ namespace ps_DutchTreat.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArtistBirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ArtistDeathDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ArtistNationality = "",
-                            Category = "",
-                            Price = 0m
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
