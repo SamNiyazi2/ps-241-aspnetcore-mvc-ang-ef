@@ -55,9 +55,8 @@ jobs:
 
           #echo  Test...3
           #xcopy /wwwroot/ClientApp/dist/*.* ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist
-          
-          echo  Copying Angular build output...
-          copy -Path ./wwwroot/ClientApp -Destination ${{env.DOTNET_ROOT}}/myapp/ClientApp/dist  -Recurse
+           
+          copy -Path ./wwwroot/ClientApp -Destination ${{env.DOTNET_ROOT}}/myapp/ClientApp  -Recurse
 
 
           # echo Copying to [${{env.DOTNET_ROOT}}]
