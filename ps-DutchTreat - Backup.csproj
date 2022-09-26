@@ -42,7 +42,6 @@
     <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="3.1.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="OdeToCode.UseNodeModules" Version="3.0.0" />
-    <PackageReference Include="SSN_Angular_Script_util" Version="1.0.0.24" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
