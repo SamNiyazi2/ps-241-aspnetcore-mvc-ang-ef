@@ -3,3 +3,22 @@
     height: 500px;
     width: 400px;
 }
+
+.cssFixedAnchor {
+    visibility: hidden;
+}
+
+@media (max-width:768px) {
+
+    .cssFixedAnchor {
+        visibility: visible;
+        font-size: 12pt;
+        position: fixed;
+        left: 10px;
+        margin: 10px;
+        z-index: 1000;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+}
