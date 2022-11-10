@@ -4,16 +4,29 @@
 
 import { Component, OnInit } from '@angular/core';
 
-@Component( {
-  selector: 'the-shop',
-  templateUrl: './shop.component.html',
-  styleUrls: [ './shop.component.css' ]
-} )
+@Component({
+    selector: 'the-shop',
+    templateUrl: './shop.component.html',
+    styleUrls: ['./shop.component.css']
+})
 export class ShopComponent implements OnInit {
 
-  constructor() { }
+    // 11/09/2022 11:37 pm - SSN - Added
+    cartIsVisible: boolean = false;
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
+
+
+    // 11/09/2022 11:37 pm - SSN - Added
+
+    onToggleCartDisplay() {
+
+        this.cartIsVisible = !this.cartIsVisible;
+    }
+
 
 }

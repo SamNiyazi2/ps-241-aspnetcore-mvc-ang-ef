@@ -1,13 +1,18 @@
-<div class="cssFixedAnchor"><a href="#theCartAnchor">Cart</a></div>
+<div class="cssFixedAnchor"><a (click)="onToggleCartDisplay()">Cart</a></div>
 <div class="row">
     <div class="col-md-9">
         <product-list></product-list>
     </div>
     <div class="col-md-3">
-        <!--<div class="card bg-light p-2 cssFixed">-->
-        <a name="theCartAnchor"></a>
-        <div class="card bg-light p-2 ">
+     
+        <div class="card bg-light p-2 cssFixed">
             <the-cart></the-cart>
         </div>
     </div>
+</div>
+ 
+<div class="cssCartMobile card " *ngIf="cartIsVisible">
+
+    <the-cart></the-cart>
+    <button class="alert-info" (click)="onToggleCartDisplay()">Hide</button>
 </div>
