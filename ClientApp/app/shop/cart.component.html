@@ -24,6 +24,15 @@
                 <td>
                     {{ o.unitPrice * o.quantity | currency }}
                 </td>
+                <td>
+                    <button  
+                            id="buyButton"
+                            class="btn btn-primary"
+                            (click)="addProduct(o.product, -1)"
+                            title="Remove a single unit">
+                        -
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

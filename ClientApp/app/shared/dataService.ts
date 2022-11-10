@@ -144,7 +144,15 @@ export class DataService {
 
     public addToOrder( newProduct: IProduct, qty: number = 1 ): void {
 
+        console.log("%c " + "addToOrder");
+        console.dir("newProduct:");
+        console.dir(newProduct);
+
         var item: IOrderItem = this.order.items.find( i => i.productId == newProduct.id );
+
+        console.dir("item:");
+        console.dir(item );
+
 
         if ( item != null ) {
 
@@ -157,6 +165,9 @@ export class DataService {
 
 
         item = new OrderItem();
+
+        // 11/10/2022 01:21 am - SSN - Add product object
+        item.product = newProduct;
 
         item.productId = newProduct.id;
         item.productArtist = newProduct.artist;

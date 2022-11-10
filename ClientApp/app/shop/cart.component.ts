@@ -8,6 +8,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DataService } from "../shared/dataService";
 import { Router } from '@angular/router';
+import { IProduct } from '../shared/product';
 
 @Component( {
   selector: "the-cart",
@@ -33,6 +34,14 @@ export class CartComponent implements OnInit {
       this.router.navigate( [ 'checkout' ] );
     }
   }
+
+
+    // 11/10/2022 01:12 am - SSN - Copied from productList.component.ts
+    addProduct(product: IProduct, qty: number = 1): void {
+
+        this.data.addToOrder(product, qty);
+    }
+
 
 
 }
