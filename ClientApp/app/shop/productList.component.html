@@ -1,12 +1,12 @@
 ﻿<div class="row">
-    <div class="product-info col-md-4 well well-sm" *ngFor="let p of products">
+    <div class="product-info col-sm-6  col-md-4 well well-sm" *ngFor="let p of products">
         <img
             src="/img/{{ p.artId }}.jpg"
             class="img-responsive"
             [alt]="p.title"
             [title]="p.title"
         />
-        <div class="product-name">{{ p.category }} - {{ p.size }}</div>
+        <div ><span class="product-name">{{ p.category }}</span> - {{ p.size }}</div>
 
         <ul class="product-props">
             <li><strong>Price:</strong> {{ p.price | currency }}</li>

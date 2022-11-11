@@ -4,7 +4,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://p3132.nonbs.com:3132",
-      "sslPort": 0
+      "sslPort": 44346
     }
   },
   "profiles": {

@@ -18,4 +18,19 @@
     <Controller_SelectedScaffolderCategoryPath>root/Controller</Controller_SelectedScaffolderCategoryPath>
     <NameOfLastUsedPublishProfile>C:\Sams_P\PS\aspnetcore-mvc-efcore-bootstrap-angular-web\hw_DutchTreat\ps-DutchTreat\Properties\PublishProfiles\ps-241-aspnetcore-mvc-angular - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="ServiceWorker\ssn-service-worker-101.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="ServiceWorker\SSN_ServiceWorker.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Update="ClientApp\app\shared\constants.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+  </ItemGroup>
 </Project>

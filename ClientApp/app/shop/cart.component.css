@@ -6,3 +6,20 @@
     border: solid 1px #ddd;
     border-radius: 6px;
 }
+
+/*11/10/2022 09:01 am - SSN - Added*/
+.cssCartButton {
+    background-color: lightblue;
+    border-radius: 3px;
+    padding:0px 2px;
+    margin: 0px 2px;
+    font-size:x-large;
+    line-height:5px;
+    cursor:pointer;
+}
+
+.cssCartButton:hover {
+    background-color: blue;
+    color:white;
+}
+

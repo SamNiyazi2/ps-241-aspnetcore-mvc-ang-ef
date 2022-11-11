@@ -17,21 +17,26 @@
             <tr *ngFor="let o of data.order.items">
                 <td>
                     {{ o.productCategory }} <br />
+                    {{ o.product.size }} <br />
                     {{ o.productTitle }}
                 </td>
-                <td>{{ o.quantity }}</td>
+                <td style="white-space:nowrap">
+                    <a
+                            class="cssCartButton"
+                            (click)="addProduct(o.product, 1)"
+                            title="Add a single unit">+</a>
+
+                    {{ o.quantity }}
+
+                    <a
+                            class="cssCartButton"
+                            (click)="addProduct(o.product, -1)"
+                            title="Remove a single unit">-</a>
+
+                </td>
                 <td>{{ o.unitPrice | currency }}</td>
                 <td>
                     {{ o.unitPrice * o.quantity | currency }}
-                </td>
-                <td>
-                    <button  
-                            id="buyButton"
-                            class="btn btn-primary"
-                            (click)="addProduct(o.product, -1)"
-                            title="Remove a single unit">
-                        -
-                    </button>
                 </td>
             </tr>
         </tbody>

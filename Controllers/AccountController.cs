@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using ps_DutchTreat.Data.Entities;
 using ps_DutchTreat.ViewModels;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -34,6 +35,15 @@ namespace ps_DutchTreat.Controllers
             userManager = _userManager;
             config = _config;
         }
+
+        // 11/10/2022 11:32 am - SSN - Created to share with MVC login
+        class TokenBag
+        {
+            public string Token { get; set; }
+            public DateTime Expiration { get; set; }
+        }
+
+        static private ConcurrentDictionary<string, TokenBag> tokenBagList = new ConcurrentDictionary<string, TokenBag>();
 
 
         class Cred
@@ -67,6 +77,9 @@ namespace ps_DutchTreat.Controllers
                 var result = await signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
+                    CustomUser customUser = await userManager.FindByNameAsync(model.Username);
+                    var results = createToken_Sub(customUser);
+
                     if (Request.Query.Keys.Contains("ReturnUrl"))
                     {
                         string returnUrl = Request.Query["ReturnUrl"].FirstOrDefault();
@@ -91,10 +104,38 @@ namespace ps_DutchTreat.Controllers
 
         public async Task<IActionResult> logout()
         {
+            // 11/10/2022 12:20 pm - SSN - Added to accommodate Angular
+            if (User.Identity.IsAuthenticated)
+            {
+                tokenBagList.TryRemove(User.Identity.Name, out TokenBag tokenBag);
+            }
+
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "App");
         }
 
+        // 11/10/2022 11:43 am - SSN - Added
+
+
+        // 08/27/2020 08:51 am - SSN - [20200827-0827] - [002] - M09-07 - Use identity in the API
+
+        [HttpPost]
+        public async Task<IActionResult> GetToken([FromBody] LoginViewModel model)
+        {
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return BadRequest(new { ErrorMessage = "Invalid access - 20221110-1159-A" });
+            //}
+
+            TokenBag tokenBag = tokenBagList.FirstOrDefault(r => r.Key == model.Username).Value;
+
+            if (tokenBag == null)
+            {
+                return BadRequest(new { ErrorMessage = "Invalid access - 20221110-1159-B" });
+            }
+            return Created("", tokenBag);
+
+        }
 
         // 08/27/2020 08:51 am - SSN - [20200827-0827] - [002] - M09-07 - Use identity in the API
         [HttpPost]
@@ -109,33 +150,11 @@ namespace ps_DutchTreat.Controllers
                     var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false);
                     if (result.Succeeded)
                     {
-                        var claims = new[]
-                        {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
-                        };
+                        // 11/10/2022 02:01 pm - SSN - Copied to give MVC users access. Begin
+                        var result_Temp = await signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+                        // 11/10/2022 02:01 pm - SSN - Copied to give MVC users access. End.
 
-
-
-                        var token_key = config["Tokens:key"];
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token_key));
-                        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                        var token = new System.IdentityModel.Tokens.Jwt.JwtSecurityToken(
-
-                            config["Tokens:Issuer"],
-                            config["Tokens:Audience"],
-                            claims,
-                            expires: DateTime.Now.AddMinutes(5),
-                            signingCredentials: creds
-                            );
-
-                        var results = new
-                        {
-                            token = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().WriteToken(token),
-                            expiration = token.ValidTo
-                        };
+                        var results = createToken_Sub(user);
 
                         return Created("", results);
 
@@ -146,5 +165,65 @@ namespace ps_DutchTreat.Controllers
             return BadRequest();
         }
 
+
+        // 11/10/2022 11:31 am - SSN - Refactor to share with MVC login
+
+        private TokenBag createToken_Sub(CustomUser user)
+        {
+            var claims = new[]
+                       {
+                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                            new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                        };
+
+
+
+            var token_key = config["Tokens:key"];
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(token_key));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new System.IdentityModel.Tokens.Jwt.JwtSecurityToken(
+
+                config["Tokens:Issuer"],
+                config["Tokens:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: creds
+                );
+
+            //var results = new
+            //{
+            //    token = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().WriteToken(token),
+            //    expiration = token.ValidTo
+            //};
+
+            TokenBag tokenBag = new TokenBag
+            {
+                Token = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().WriteToken(token),
+                Expiration = token.ValidTo
+            };
+
+            TokenBag tokenBag_temp = tokenBagList.FirstOrDefault(r => r.Key == user.UserName).Value;
+
+            tokenBagList.AddOrUpdate(user.UserName, addToken , updateToken );
+
+
+            TokenBag addToken(string arg)
+            {
+                return tokenBag;
+            }
+
+            TokenBag updateToken(string arg1, TokenBag arg2)
+            {
+                return tokenBag;
+            }
+
+            //return results;
+            return tokenBag;
+        }
+
     }
+
+
 }

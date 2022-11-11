@@ -9,19 +9,20 @@
     <Compile Remove="wwwroot\css\font-awesome\less\**" />
     <Compile Remove="wwwroot\css\font-awesome\scss\**" />
     <Compile Remove="wwwroot\js\bootstrap\js\**" />
-    <Compile Remove="wwwroot\ts\**" />
     <Content Remove="wwwroot\css\font-awesome\less\**" />
     <Content Remove="wwwroot\css\font-awesome\scss\**" />
     <Content Remove="wwwroot\js\bootstrap\js\**" />
-    <Content Remove="wwwroot\ts\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\less\**" />
     <EmbeddedResource Remove="wwwroot\css\font-awesome\scss\**" />
     <EmbeddedResource Remove="wwwroot\js\bootstrap\js\**" />
-    <EmbeddedResource Remove="wwwroot\ts\**" />
     <None Remove="wwwroot\css\font-awesome\less\**" />
     <None Remove="wwwroot\css\font-awesome\scss\**" />
     <None Remove="wwwroot\js\bootstrap\js\**" />
-    <None Remove="wwwroot\ts\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="ClientApp\app\login\angularLoginStatus.component.ts" />
+    <None Remove="ClientApp\app\shared\constants.ts" />
+    <None Remove="ServiceWorker\ssn-service-worker-101.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\css\font-awesome\css\font-awesome.css.map" />
@@ -47,5 +48,11 @@
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\css\bootstrap\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\login\angularLoginStatus.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\constants.ts" />
+    <TypeScriptCompile Include="ServiceWorker\ssn-service-worker-101.ts" />
+    <TypeScriptCompile Include="ServiceWorker\SSN_ServiceWorker.ts" />
   </ItemGroup>
 </Project>
